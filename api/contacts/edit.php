@@ -1,7 +1,7 @@
 <?php
 
 /*
-** This endpoint handles a user editing an existing project.
+** This endpoint handles a user editing an existing contact.
 **
 ** Returns 400 if the request does not conform to {"UserID": <NUMBER>, "ContactID": <NUMBER>, 
 ** "FirstName": <STRING>, "LastName": <STRING>, "PhoneNumber": <STRING>, "EmailAddress": <STRING>}
@@ -23,7 +23,7 @@ $phone_number = sanitizeUserString($form, "PhoneNumber", 1, 256, SANITIZE_STRING
 $email_address = sanitizeUserString($form, "EmailAddress", 1, 256, SANITIZE_STRING_ANY_EXCEPT_SPACE);
 
 if (!isset($user_id) || !isset($first_name) || !isset($last_name) || !isset($phone_number) 
-    || !isset($email_address) || !isset($contact_Id)) {
+    || !isset($email_address) || !isset($contact_id)) {
     http_response_code(STATUS_MALFORMED_REQUEST);
     echoErrorMessageAsJSON(ERROR_MESSAGE_MALFORMED_REQUEST);
     return;
@@ -36,9 +36,9 @@ if ($db->connect_error) {
     return;
 }
 
-$create_stmt = $db->prepare("UPDATE Contacts SET FirstName=?, LastName=?, Phone=?, Email=? WHERE UserID=?");
-$create_stmt->bind_param("ssssi", $first_name, $last_name, $phone_number, $email_address, $contact_id);
+$create_stmt = $db->prepare("UPDATE Contacts SET FirstName=?, LastName=?, Phone=?, Email=? WHERE ID=? AND UserID=?");
+$create_stmt->bind_param("ssssii", $first_name, $last_name, $phone_number, $email_address, $contact_id, $user_id);
 $create_stmt->execute();
-http_response_code(($create_stmt->affected_rows == 1) ? STATUS_SUCCESS : STATUS_MISSING);;
+http_response_code(($create_stmt->affected_rows == 1) ? STATUS_SUCCESS : STATUS_MISSING);
 
 ?>

@@ -30,7 +30,7 @@ if (!isset($user_id) || !isset($first_name) || !isset($last_name) || !isset($pho
 $db = new mysqli(DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME);
 if ($db->connect_error) {
     http_response_code(STATUS_INTERNAL_ERROR);
-    echoErrorMessageAsJSON(ERROR_MESSAGE_DATABASE_UNAVAILABLE;
+    echoErrorMessageAsJSON(ERROR_MESSAGE_DATABASE_UNAVAILABLE);
     return;
 }
 

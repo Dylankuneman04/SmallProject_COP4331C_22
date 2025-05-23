@@ -1,15 +1,14 @@
 
 # MySQL
 
-Step 1. Log into the server as root
-Step 2. Type `mysql`
-Step 3. Type `show databases;` to show all databases (We're using COP4331)
-Step 4. Type `describe COP4331.Contacts;` to view the Contacts schema
-Step 5. Type `describe COP4331.Users;` to view the Users schema
+1. Log into the server as root
+2. Type `mysql`
+3. Type `show databases;` to show all databases (We're using COP4331)
+4. Type `describe COP4331.Contacts;` to view the Contacts schema
+5. Type `describe COP4331.Users;` to view the Users schema
 
-# Contacts
+# Contacts Table
 
-|-----------|-------------|------|-----|---------|----------------|
 | Field     | Type        | Null | Key | Default | Extra          |
 |-----------|-------------|------|-----|---------|----------------|
 | ID        | int         | NO   | PRI | NULL    | auto_increment |
@@ -18,11 +17,9 @@ Step 5. Type `describe COP4331.Users;` to view the Users schema
 | Phone     | varchar(50) | NO   |     |         |                |
 | Email     | varchar(50) | NO   |     |         |                |
 | UserID    | int         | NO   |     | 0       |                |
-|-----------|-------------|------|-----|---------|----------------|
 
-# Users
+# Users Table
 
-|-----------|-------------|------|-----|---------|----------------|
 | Field     | Type        | Null | Key | Default | Extra          |
 |-----------|-------------|------|-----|---------|----------------|
 | ID        | int         | NO   | PRI | NULL    | auto_increment |
@@ -30,4 +27,3 @@ Step 5. Type `describe COP4331.Users;` to view the Users schema
 | LastName  | varchar(50) | NO   |     |         |                |
 | Login     | varchar(50) | NO   |     |         |                |
 | Password  | varchar(50) | NO   |     |         |                |
-|-----------|-------------|------|-----|---------|----------------|
