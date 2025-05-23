@@ -19,14 +19,14 @@ $contact_id = sanitizeUserNumber($form, "ContactID", 0, 2147483647);
 
 if (!isset($user_id) || !isset($contact_id)) {
     http_response_code(STATUS_MALFORMED_REQUEST);
-    echoErrorMessageAsJSON("Required fields are missing or malformed");
+    echoErrorMessageAsJSON(ERROR_MESSAGE_MALFORMED_REQUEST);
     return;
 }
 
 $db = new mysqli(DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME);
 if ($db->connect_error) {
     http_response_code(STATUS_INTERNAL_ERROR);
-    echoErrorMessageAsJSON("The server failed to communicate with the database");
+    echoErrorMessageAsJSON(ERROR_MESSAGE_DATABASE_UNAVAILABLE);
     return;
 }
 

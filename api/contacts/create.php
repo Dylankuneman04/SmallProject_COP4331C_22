@@ -18,19 +18,19 @@ $form = getRequestAsJSON();
 $user_id = sanitizeUserNumber($form, "UserID", 0, 2147483647);
 $first_name = sanitizeUserString($form, "FirstName", 1, 256, SANITIZE_STRING_ALPHANUMERIC);
 $last_name = sanitizeUserString($form, "LastName", 1, 256, SANITIZE_STRING_ALPHANUMERIC);
-$phone_number = sanitizeUserString($form, "PhoneNumber", 1, 256, SANITIZE_STRING_ALPHANUMERIC);
-$email_address = sanitizeUserString($form, "EmailAddress", 1, 256, SANITIZE_STRING_ALPHANUMERIC);
+$phone_number = sanitizeUserString($form, "PhoneNumber", 1, 256, SANITIZE_STRING_ANY_EXCEPT_SPACE);
+$email_address = sanitizeUserString($form, "EmailAddress", 1, 256, SANITIZE_STRING_ANY_EXCEPT_SPACE);
 
 if (!isset($user_id) || !isset($first_name) || !isset($last_name) || !isset($phone_number) || !isset($email_address)) {
     http_response_code(STATUS_MALFORMED_REQUEST);
-    echoErrorMessageAsJSON("Required fields are missing or malformed");
+    echoErrorMessageAsJSON(ERROR_MESSAGE_MALFORMED_REQUEST);
     return;
 }
 
 $db = new mysqli(DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME);
 if ($db->connect_error) {
     http_response_code(STATUS_INTERNAL_ERROR);
-    echoErrorMessageAsJSON("The server failed to communicate with the database");
+    echoErrorMessageAsJSON(ERROR_MESSAGE_DATABASE_UNAVAILABLE;
     return;
 }
 

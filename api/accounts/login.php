@@ -19,14 +19,14 @@ $password = sanitizeUserString($form, "Password", 1, 256, SANITIZE_STRING_ALPHAN
 
 if (!isset($username) || !isset($password)) {
     http_response_code(STATUS_MALFORMED_REQUEST);
-    echoErrorMessageAsJSON("Username and/or Password fields are missing or malformed");
+    echoErrorMessageAsJSON(ERROR_MESSAGE_MALFORMED_REQUEST);
     return;
 }
 
 $db = new mysqli(DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME);
 if ($db->connect_error) {
     http_response_code(STATUS_INTERNAL_ERROR);
-    echoErrorMessageAsJSON("The server failed to communicate with the database");
+    echoErrorMessageAsJSON(ERROR_MESSAGE_DATABASE_UNAVAILABLE);
     return;
 }
 

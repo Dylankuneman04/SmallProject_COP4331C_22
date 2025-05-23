@@ -19,14 +19,14 @@ $query = sanitizeUserString($form, "Query", 1, 256, SANITIZE_STRING_ALPHANUMERIC
 
 if (!isset($user_id) || !isset($query)) {
     http_response_code(STATUS_MALFORMED_REQUEST);
-    echoErrorMessageAsJSON("Required fields are missing or malformed");
+    echoErrorMessageAsJSON(ERROR_MESSAGE_MALFORMED_REQUEST);
     return;
 }
 
 $db = new mysqli(DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME);
 if ($db->connect_error) {
     http_response_code(STATUS_INTERNAL_ERROR);
-    echoErrorMessageAsJSON("The server failed to communicate with the database");
+    echoErrorMessageAsJSON(ERROR_MESSAGE_DATABASE_UNAVAILABLE);
     return;
 }
 
@@ -39,7 +39,7 @@ $search_res_collection = [];
 while ($row = $search_res->fetch_assoc()) {
     $contact = array("ContactID" => $row["ID"], "FirstName" => $row["FirstName"], 
     "LastName" => $row["LastName"], "PhoneNumber" => $row["Phone"], "EmailAddress" => $row["Email"]);
-    array_push($res, $contact);
+    array_push($search_res_collection, $contact);
 }
 http_response_code(STATUS_SUCCESS);
 echoObjectAsJSON($search_res_collection);
