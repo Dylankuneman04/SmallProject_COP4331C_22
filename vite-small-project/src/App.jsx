@@ -6,9 +6,7 @@ function App() {
 
   return (
     <>
-      
-      <h1>Getting this thing set up is<br></br>literally a huge W</h1>
-      
+      <h1></h1>
     </>
   )
 }
