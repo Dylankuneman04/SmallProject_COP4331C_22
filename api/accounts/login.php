@@ -30,7 +30,7 @@ if ($db->connect_error) {
     return;
 }
 
-$login_stmt = $db->prepare("SELECT ID, FirstName, LastName FROM Users WHERE Username=? AND Password=?");
+$login_stmt = $db->prepare("SELECT ID, FirstName, LastName FROM Users WHERE Login=? AND Password=?");
 $login_stmt->bind_param("ss", $username, $password);
 $login_stmt->execute();
 $login_result = $login_stmt->get_result();
