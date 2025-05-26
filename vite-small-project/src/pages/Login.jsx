@@ -1,20 +1,31 @@
+import { Link } from "react-router-dom";
+
 function Login() {
 
   return (
-    <form action="">
-      <h2>Login</h2>
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input type="text" placeholder="username" id="username" name="username" required />
+    <>
+      <form action="">
+        <h2>Login</h2>
+        <div>
+          <label htmlFor="username">Username:</label>
+          <input type="text" placeholder="username" id="username" name="username" required />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input type="password" placeholder="username" id="password" name="password" required />
+        </div>
+        <div>
+          <button type="submit">Login</button>
+        </div>
+      </form>
+      <div className="Login-footer">
+        <p>Don't have an account? <Link to="/register">Register here</Link></p>
       </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input type="password" placeholder="username" id="password" name="password" required />
-      </div>
-      <div>
-        <button type="submit">Login</button>
-      </div>
-    </form>
+      <Link to="/">
+        <button>Return Home</button>
+      </Link>
+      
+    </>
   );
 }
 
