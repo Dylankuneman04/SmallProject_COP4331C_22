@@ -1,5 +1,5 @@
-
 import './App.css'
+import { Link } from 'react-router-dom'
 
 function App() {
   return (
@@ -16,7 +16,9 @@ function App() {
           <p>Enjoy your journey building your galaxy of contacts!</p>
         </div>
 
-        <a href="https://github.com/Dylankuneman04/SmallProject_COP4331C_22"><button>Get Started</button></a>
+        <Link to="/Login">
+          <button>Get Started</button>
+        </Link>
 
       </div>
     </>
