@@ -6,7 +6,7 @@ let firstName = "";
 let lastName = "";
 const ids = []
 
-function Login(){
+function doLogin(){
 
     // resets logging info
     let userId = 0;
@@ -260,3 +260,11 @@ function validLoginForm(nameInput,passwordInput){
 
 
 }
+
+export default {
+    doLogin,
+    doSignup,
+    validLoginForm,
+    validSignUpForm,
+    saveCookie
+};
