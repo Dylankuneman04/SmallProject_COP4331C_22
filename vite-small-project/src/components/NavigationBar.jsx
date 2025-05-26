@@ -12,8 +12,7 @@ function NavigationBar() {
   );
 }
 
-// Saymon:
 // If logged in, show the user's name and a logout button
-// Possibly make a separate navbar component for logged in users?
+// Possibly make a separate navbar component for logged in users
 
 export default NavigationBar;
