@@ -33,7 +33,7 @@ if ($db->connect_error) {
     return;
 }
 
-$dup_check_stmt = $db->prepare("SELECT * FROM Users WHERE Username=?");
+$dup_check_stmt = $db->prepare("SELECT * FROM Users WHERE Login=?");
 $dup_check_stmt->bind_param("s", $username);
 $dup_check_stmt->execute();
 $dup_check_res = $dup_check_stmt->get_result();
@@ -43,7 +43,7 @@ if ($dup_check_count >= 1) {
     http_response_code(STATUS_CONFLICT);
     echoErrorMessageAsJSON("An account with the provided username already exists");
 } else {
-    $register_stmt = $db->prepare("INSERT into Users (FirstName, LastName, Username, Password) VALUES (?,?,?,?)");
+    $register_stmt = $db->prepare("INSERT into Users (FirstName, LastName, Login, Password) VALUES (?,?,?,?)");
     $register_stmt->bind_param("ssss", $first_name, $last_name, $username, $password);
     $register_stmt->execute();
     $register_id = $db->insert_id;
