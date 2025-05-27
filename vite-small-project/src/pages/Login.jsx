@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { doLogin } from "../js/frontendCode.js"
+import frontendCode from "../js/frontendCode"
 
 function Login() {
 
@@ -21,7 +21,7 @@ function Login() {
   return (
     <>
     
-      <form onSubmit={handleLogin}> 
+      <form onSubmit={frontendCode.doLogin}> 
         <h2>Login</h2>
         <div>
           <label htmlFor="username">Username:</label>

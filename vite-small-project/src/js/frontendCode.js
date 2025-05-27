@@ -1,6 +1,8 @@
 const urlBase = 'http://hopethiswork.com/api';
 const extension = 'php';
 
+
+
 let userId = 0;
 let firstName = "";
 let lastName = "";
@@ -68,6 +70,8 @@ function doLogin(){
         document.getElementById("loginResult").innerHTML = err.message;
     }
 }
+
+
 
 function saveCookie() {
     let minutes = 20;

@@ -50,5 +50,5 @@ if ($dup_check_count >= 1) {
     http_response_code(STATUS_SUCCESS);
     echoObjectAsJSON(array("UserID" => $register_id));
 }
-
+ 
 ?>
