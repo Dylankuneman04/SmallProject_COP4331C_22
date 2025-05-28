@@ -1,13 +1,21 @@
-body 
-{
-    background-color: #707070;
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-image: url('/images/Galaxy_BG.jpg'); /* Make sure path is correct */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
+
 
 #title 
 {
-    font-size: 40px;
+    font-size: 60px;
     width: 100%;
-    margin: 2% 5%;
+    margin: 3% 5%;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
     color: #FFFFFF;
@@ -15,11 +23,10 @@ body
 
 #loginDiv
 {
-    font-size: 30px;
+    font-size: 50px;
     width: 70%;
-    margin-left: 15%;
+    margin-left: 17%;
     padding: 25px;
-    background-color: #b2b2b2;
 }
 
 #loggedInDiv
@@ -89,7 +96,7 @@ input[type="text"],input[type="password"]{
     margin-left: 5%;
     margin-bottom: 2%;
     font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+    color: #ffffff;
 }
 
 #loginResult{
