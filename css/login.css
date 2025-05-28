@@ -8,12 +8,19 @@
 }
 
 body {
-    display: flex;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('/images/Galaxy_BG.jpg'); /* Make sure path is correct */
+    background-size: cover;
+    background-position: center;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: beige;
     flex-direction: column;
+    display: flex;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .title {
@@ -27,8 +34,8 @@ body {
 
 .wrapper {
     width: 420px;
-    background: violet;
-    color:#fff
+    background: rgb(255, 255, 255);
+    color:#000000
 }
 
 .wrapper h1 {
