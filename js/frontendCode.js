@@ -29,8 +29,8 @@ function doLogin(){
     document.getElementById("loginResult").innerHTML = "";
 
     let tmp = {
-        login: name,
-        password: hash
+        Username: name,
+        Password: hash
     };
 
     // makes json file of name and password
@@ -51,7 +51,7 @@ function doLogin(){
                 userId = jsonObject.id;
 
                 if (userId < 1) {
-                    document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+                    document.getElementById("errorDiv").innerHTML = "User/Password combination incorrect";
                     return;
                 }
                 firstName = jsonObject.firstName;
@@ -156,6 +156,11 @@ function doSignup() {
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
+    console.log("firstName: " + firstName + " " + typeof firstName);
+    console.log("lastName: " + lastName + " " + typeof lastName);
+    console.log("username: " + username + " " + typeof username);   
+    console.log("password: " + password + " " + typeof password);
+
     // checks field syntax
     if (!validSignUpForm(firstName, lastName, username, password)) {
         document.getElementById("errorDiv").innerHTML = "invalid signup";
@@ -167,10 +172,10 @@ function doSignup() {
     document.getElementById("errorDiv").innerHTML = "";
 
     let tmp = {
-        firstName: firstName,
-        lastName: lastName,
-        login: username,
-        password: hash
+        FirstName: firstName,
+        LastName: lastName,
+        Username: username,
+        Password: hash
     };
 
     let jsonPayload = JSON.stringify(tmp);
@@ -190,7 +195,7 @@ function doSignup() {
 
             // returns 409 if user exists
             if (this.status == 409) {
-                document.getElementById("signupResult").innerHTML = "User already exists";
+                document.getElementById("errorDiv").innerHTML = "User already exists";
                 return;
             }
 
@@ -198,7 +203,7 @@ function doSignup() {
 
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
-                document.getElementById("signupResult").innerHTML = "User added";
+                document.getElementById("errorDiv").innerHTML = "User added";
                 firstName = jsonObject.firstName;
                 lastName = jsonObject.lastName;
                 saveCookie();
@@ -341,11 +346,11 @@ function addContact() {
     }
 
     let tmp = {
-        firstName: firstname,
-        lastName: lastname,
-        phoneNumber: phonenumber,
-        emailAddress: emailaddress,
-        userId: userId
+        FirstName: firstname,
+        LastName: lastname,
+        PhoneNumber: phonenumber,
+        EmailAddress: emailaddress,
+        UserID: userId
     };
 
 
