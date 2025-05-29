@@ -311,6 +311,7 @@ nav {
 #add-popup.open {
   z-index: 999;
   opacity: 1;
+  transition: all 0.2s ease-out;
 }
 
 .tmp {
