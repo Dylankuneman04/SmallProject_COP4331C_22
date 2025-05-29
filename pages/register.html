@@ -16,13 +16,13 @@
         <div class="input-box">
           <div>
             <div>
-              <input id="firstname" type="text" placeholder="Name" required />
+              <input id="firstName" type="text" placeholder="Name" required />
               <i class='bx  bx-asterisk'></i> 
             </div>
           </div>
           <div class="input-box">
             <div>
-              <input id="lastname" type="text" placeholder="Last Name" required />
+              <input id="lastName" type="text" placeholder="Last Name" required />
               <i class='bx  bx-asterisk'></i> 
             </div>
           </div>
@@ -45,7 +45,7 @@
         </div>
           
         <div id="login-button-div">
-          <button type="submit" id="login-button" onclick="">Create Account</button>
+          <button type="submit" id="login-button" onclick="handleRegistration()">Create Account</button>
           <div class="register-link">
             <p>Already have a spaceship? <a href="/pages/login.html">Login</a></p>
           </div>
@@ -54,6 +54,8 @@
     </div>
   </div>
   
-  <script type="module" src="../js/script.js"></script>
+  <script type="module" src="../js/script.js"></script> 
+  <script src="../js/md5.js"></script>
 </body>
 </html>
+

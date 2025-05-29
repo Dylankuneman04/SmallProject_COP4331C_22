@@ -1,5 +1,3 @@
-
-
 const urlBase = 'http://hopethiswork.com/api';
 const extension = 'php';
 
@@ -150,6 +148,7 @@ function validSignUpForm(fName, lName, user, pass) {
 
 function doSignup() {
 
+
     // add name, lastname, username and password for new account
     firstName = document.getElementById("firstName").value;
     lastName = document.getElementById("lastName").value;
@@ -163,7 +162,7 @@ function doSignup() {
         return;
     }
 
-    let hash = md5(password);
+    let hash = md5(password); 
 
     document.getElementById("errorDiv").innerHTML = "";
 
@@ -628,3 +627,4 @@ export default{
     clickLogin,
     clickRegister
 };
+

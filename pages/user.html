@@ -33,10 +33,9 @@
           </form>
           <div class ="buttons-div">
             <button class="add-btn"><i class='bx-md bx bx-filter'></i></button>
-            <button id="add-btn" class="add-btn"><i class='bx-md bx bxs-user-plus'></i></button>
+            <button type="button" id="add-btn" class="add-btn" onclick="openAddUserPopup()"><i class='bx-md bx bxs-user-plus'></i></button>
           </div>
         </div>
-
         <div id="add-popup">
           <div id="popup" class="content input-box">
             <h3>Contact Info</h3>
@@ -44,7 +43,7 @@
             <input type="email" placeholder="Email" required>
             <input type="tel" placeholder="Phone Number" required>
             <button type="submit" class="add-ctct-btn">Add Contact</button>
-            <button id="add-btn-close" class="add-btn-close">Close</button>
+            <button id="add-btn-close" class="add-btn-close" onclick="closeAddUserPopup()">Close</button>
           </div>
         </div>
 
@@ -91,7 +90,6 @@
     <div class="tmp">
       <a href="/index.html" ><button>Temporary Return Button</button></a>
     </div>
-    
     <script type="module" src="../js/script.js"></script>
   </body>
 </html>
