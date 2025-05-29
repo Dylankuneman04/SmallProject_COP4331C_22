@@ -8,7 +8,7 @@
     <link href="../css/styles.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body id="user-body">
 
     <header>
       <div>
@@ -21,15 +21,22 @@
           <li><a href="#">option</a></li>
         </ul>
       </nav>
-      
       <a href="#"><button>About Us</button></a>
     </header>
 
-    <div class="content">
-
-      <div class="contact-menu">
-
+    <div class="container">
+      <div class="content">
         <h2>Contact List</h2>
+        
+        
+        <div class="search-div">
+          <form action="">
+            <input type="text" placeholder="Search Contact">
+            <button type="submit" id="search-button"><i class='bx-sm bx bx-search'></i></button>
+          </form>
+          <button class="add-btn"><i class='bx-md bx bxs-user-plus'></i></button>
+        </div>
+
 
         <ul class = contact-list>
           <li>
@@ -69,13 +76,11 @@
           </li>
         </ul>
       </div>
-
     </div>
 
     <div class="tmp">
       <a href="/index.html" ><button>Temporary Return Button</button></a>
     </div>
     
-
   </body>
 </html>

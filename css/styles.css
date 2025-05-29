@@ -45,7 +45,7 @@ body {
   backdrop-filter: blur(20px);
 }
 
-#login-body .content, #register-body .content, #home-body .content {
+#login-body .content, #register-body .content, #home-body .content, #user-body .content {
   width: 100%;
   max-width: 800px;
   height: 100%;
@@ -59,6 +59,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.322);
   background: transparent;
 }
+
 
 #login-body .content {
   max-height: 800px;
@@ -176,18 +177,77 @@ nav {
   border-radius: 50px; 
 }
 
+.search-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px;
+}
+
+.search-div form {
+  background: transparent;
+  width: 60%;
+  border: #ffffff50 2px solid;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-div button {
+  background-color: #ffffff33;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+  color: #FFFFFF;
+  transition: all 0.3s ease;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-div button:hover {
+  background-color: #ffffffa4;
+}
+
+.search-div input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding-left: 20px;
+  color: #FFFFFF;
+  font-size: 16px;
+}
+
+.search-div input::placeholder {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.712);
+  padding-left: 4px;
+}
+
 .contact-card {
-  background-color: #484950;
+  background-color: #1a267e6c;
   border-radius: 20px;
   padding: 20px;
   margin: 6px;
   width: 500px;
+  height: 100px;
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .contact-card:hover {
-  background-color: #5a5b63;
+  background-color: #7531ad94;
   transform: translateY(-4px);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.315);
 }
@@ -287,4 +347,20 @@ nav {
   height: 60px;
   font-size: 18px;
   font-weight: 600;
+}
+
+.add-btn {
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  width: 60px;
+  background: transparent;
+  margin: 30px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.644);
+  border: 2px solid rgba(255, 255, 255, 0.322);
+}
+
+.add-btn:hover {
+  background-color: rgba(255, 255, 255, 0.432);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.315);
 }
