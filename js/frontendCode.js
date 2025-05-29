@@ -149,12 +149,18 @@ function validSignUpForm(fName, lName, user, pass) {
 function doSignup() {
 
 
+    let userId = 0;
+    let firstName = "";
+    let lastName = "";
+    let username = "";
+    let password = "";
+
     // add name, lastname, username and password for new account
     firstName = document.getElementById("firstName").value;
     lastName = document.getElementById("lastName").value;
 
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
+    username = document.getElementById("username").value;
+    password = document.getElementById("password").value;
 
     console.log("firstName: " + firstName + " " + typeof firstName);
     console.log("lastName: " + lastName + " " + typeof lastName);
@@ -462,11 +468,11 @@ function save_row(no) {
     document.getElementById("save_button" + no).style.display = "none";
 
     let tmp = {
-        phoneNumber: phone_val,
-        emailAddress: email_val,
-        newFirstName: namef_val,
-        newLastName: namel_val,
-        id: id_val
+        PhoneNumber: phone_val,
+        EmailAddress: email_val,
+        FirstName: namef_val,
+        LastName: namel_val,
+        UserID: id_val
     };
 
     let jsonPayload = JSON.stringify(tmp);
