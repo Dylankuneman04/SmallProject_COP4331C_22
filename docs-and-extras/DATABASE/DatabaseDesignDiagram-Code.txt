@@ -1,0 +1,19 @@
+// Copy & paste this into here: https://dbdiagram.io/d
+// Use this for help: https://dbml.dbdiagram.io/docs
+
+Table Users {
+  ID integer [primary key]
+  FirstName varchar(50) 
+  LastName varchar(50)
+  Login varchar(50)
+  Password varchar(50)
+}
+
+Table Contacts {
+  ID integer [primary key]
+  FirstName varchar(50)
+  LastName varchar(50)
+  Phone varchar(50)
+  Email varchar(50)
+  UserID int [ref: > Users.ID]
+}

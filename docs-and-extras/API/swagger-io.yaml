@@ -1,0 +1,316 @@
+swagger: '2.0'
+
+info:
+  description: COP4331 Simple Project Team 22 API Documentation
+  version: 1.0.0
+  title: COP4331 Team 22 Simple Project API Documentation
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: hopethiswork.com
+basePath: /api
+schemes:
+- http
+
+paths:
+  /accounts/login.php:
+    post:
+      tags:
+      - Accounts
+      summary: Account login
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: json
+        schema:
+          $ref: '#/definitions/AccountLogin'
+      responses:
+        400:
+          description: Invalid request
+        500:
+          description: Server error or database unavailable
+        401:
+          description: Login failed due to incorrect credentials
+        200:
+          description: Login successful
+          schema:
+            $ref: "#/definitions/AccountLoginResponse"
+          
+  /accounts/register.php:
+    post:
+      tags:
+      - Accounts
+      summary: Creates a new account
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: json
+        schema:
+          $ref: '#/definitions/RegisterAccount'
+      responses:
+        400:
+          description: Invalid request
+        500:
+          description: Server error or database unavailable
+        409:
+          description: Username is already taken
+        200:
+          description: Registration successful
+          schema:
+            $ref: '#/definitions/RegisterAccountResponse'
+          
+  /contacts/create.php:
+    post:
+      tags:
+      - Contacts
+      summary: Creates a new contact
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: json
+        schema:
+          $ref: '#/definitions/CreateContact'
+      responses:
+        400:
+          description: Invalid request
+        500:
+          description: Server error or database unavailable
+        200:
+          description: Contact created successfully
+
+  /contacts/delete.php:
+    delete:
+      tags:
+      - Contacts
+      summary: Deletes an existing contact
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: json
+        schema:
+          $ref: '#/definitions/DeleteContact'
+      responses:
+        400:
+          description: Invalid request
+        500:
+          description: Server error or database unavailable
+        404:
+          description: Contact or user does not exist
+        200:
+          description: Contact deleted successfully
+          
+  /contacts/edit.php:
+    post:
+      tags:
+      - Contacts
+      summary: Edits an existing contact
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: json
+        schema:
+          $ref: '#/definitions/EditContact'
+      responses:
+        400:
+          description: Invalid request
+        500:
+          description: Server error or database unavailable
+        404:
+          description: Contact or user does not exist
+        200:
+          description: Contact edited successfully
+          
+  /contacts/search.php:
+    get:
+      tags:
+      - Contacts
+      summary: Search through contacts
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: json
+        schema:
+          $ref: '#/definitions/SearchContacts'
+      responses:
+        400:
+          description: Invalid request
+        500:
+          description: Server error or database unavailable
+        200:
+          description: Search complete
+          schema:
+            $ref: '#/definitions/SearchContactsResponse'
+          
+definitions:
+  AccountLogin:
+    type: object
+    required:
+    - Username
+    - Password
+    properties:
+      Username:
+        type: string
+        example: "jdoe"
+      Password:
+        type: string
+        example: "5d41402abc4b2a76b9719d911017c592"
+
+  AccountLoginResponse:
+    type: object
+    properties:
+      UserID:
+        type: integer
+        example: 0
+      FirstName:
+        type: string
+        example: "John"
+      LastName:
+        type: string
+        example: "Doe"
+        
+  RegisterAccount:
+    type: object
+    required:
+    - FirstName
+    - LastName
+    - Username
+    - Password
+    properties:
+      FirstName:
+        type: string
+        example: "John"
+      LastName:
+        type: string
+        example: "Doe"
+      Username:
+        type: string
+        example: "jdoe"
+      Password:
+        type: string
+        example: "5d41402abc4b2a76b9719d911017c592"
+  
+  RegisterAccountResponse:
+    type: object
+    properties:
+      UserID:
+        type: integer
+        example: 0
+        
+  CreateContact:
+    type: object
+    required:
+    - UserID
+    - FirstName
+    - LastName
+    - PhoneNumber
+    - EmailAddress
+    properties:
+      UserID:
+        type: integer
+        example: 0
+      FirstName:
+        type: string
+        example: "John"
+      LastName:
+        type: string
+        example: "Doe"
+      PhoneNumber:
+        type: string
+        example: "+X (XXX)XXX-XXXX"
+      EmailAddress:
+        type: string
+        example: "john.doe@example.com"
+        
+  DeleteContact:
+    type: object
+    required:
+    - UserID
+    - ContactID
+    properties:
+      UserID:
+        type: integer
+        example: 0
+      ContactID:
+        type: integer
+        example: 0
+        
+  EditContact:
+    type: object
+    required:
+    - UserID
+    - ContactID
+    - FirstName
+    - LastName
+    - PhoneNumber
+    - EmailAddress
+    properties:
+      UserID:
+        type: integer
+        example: 0
+      ContactID:
+        type: integer
+        example: 0
+      FirstName:
+        type: string
+        example: "John"
+      LastName:
+        type: string
+        example: "Doe"
+      PhoneNumber:
+        type: string
+        example: "+X (XXX)XXX-XXXX"
+      EmailAddress:
+        type: string
+        example: "john.doe@example.com"
+  
+  SearchContacts:
+    type: object
+    required:
+    - UserID
+    - Query
+    properties:
+      UserID:
+        type: integer
+        example: 0
+      Query:
+        type: string
+        example: "jane"
+        
+  SearchContactsResponse:
+    type: array
+    items:
+      type: object
+      properties:
+        ContactID:
+          type: integer
+          example: 0
+        FirstName:
+          type: string
+          example: "John"
+        LastName:
+          type: string
+          example: "Doe"
+        PhoneNumber:
+          type: string
+          example: "+X (XXX)XXX-XXXX"
+        EmailAddress:
+          type: string
+          example: "john.doe@example.com"

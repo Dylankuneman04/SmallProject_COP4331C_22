@@ -1,13 +1,21 @@
 
-# MySQL
+# Database
+
+## Explore
 
 1. Log into the server as root
 2. Type `mysql`
-3. Type `show databases;` to show all databases (We're using COP4331)
-4. Type `describe COP4331.Contacts;` to view the Contacts schema
-5. Type `describe COP4331.Users;` to view the Users schema
+3. Type `show databases;` to show all databases
+4. Type `use COP4331;` to select the database we're using
+5. Type `describe Contacts;` to view the Contacts schema (also added below)
+6. Type `describe Users;` to view the Users schema (also added below)
+7. Type `select * from Users;` to view all existing users
+8. Type `select * from Contacts;` to view all existing contacts
+9. Type `exit;` to exit
 
-# Contacts Table
+# Tables 
+
+## Contacts
 
 | Field     | Type        | Null | Key | Default | Extra          |
 |-----------|-------------|------|-----|---------|----------------|
@@ -18,7 +26,7 @@
 | Email     | varchar(50) | NO   |     |         |                |
 | UserID    | int         | NO   |     | 0       |                |
 
-# Users Table
+## Users
 
 | Field     | Type        | Null | Key | Default | Extra          |
 |-----------|-------------|------|-----|---------|----------------|
