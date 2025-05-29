@@ -39,7 +39,7 @@ body {
   min-height: 50%;
   padding: 20px;
   margin:5%;
-  border: rgba(255, 255, 255, 0.322) 2px solid;
+  
   border-radius: 28px;
   background-color: #32333a;
   backdrop-filter: blur(20px);
@@ -58,6 +58,23 @@ body {
   border-radius: 28px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.322);
   background: transparent;
+  border: rgba(255, 255, 255, 0.322) 2px solid;
+}
+
+#user-body #add-popup .content {
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 5%;
+  border: 2px solid rgba(0, 0, 0, 0.164);
+  border-radius: 28px;
+  box-shadow: 0 2px 30px rgb(0, 0, 0);
+  background-color: transparent;
 }
 
 
@@ -74,6 +91,11 @@ body {
 #home-body .content {
   max-width: 1300px;
   height: 200px;
+}
+
+#user-body .content {
+  max-width: 1300px;
+  height: 100%;
 }
 
 .content h2 {
@@ -149,6 +171,12 @@ header h1 {
   color: rgb(84, 73, 238);
 }
 
+.buttons-div {
+  display: flex;
+  width: 100%;
+  max-width: 200px;
+}
+
 button {
   background-color: rgb(84, 73, 238);
   border: none;
@@ -194,6 +222,8 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 60px;
+  margin-right: 12px;
 }
 
 .search-div button {
@@ -205,8 +235,10 @@ nav {
   color: #FFFFFF;
   transition: all 0.3s ease;
   width: 80px;
+  height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .search-div button:hover {
@@ -237,7 +269,7 @@ nav {
   border-radius: 20px;
   padding: 20px;
   margin: 6px;
-  width: 500px;
+  width: 1000px;
   height: 100px;
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
@@ -255,6 +287,30 @@ nav {
 .contact-list {
   list-style: none;
   padding: 0;
+}
+
+#add-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+  border-radius:26px;
+  z-index: -1;
+  opacity: 0;
+}
+
+#add-popup.open {
+  z-index: 999;
+  opacity: 1;
 }
 
 .tmp {
@@ -303,6 +359,28 @@ nav {
   width: 100%;
 }
 
+#add-popup h3 {
+  font-size: 40px;
+  margin: 60px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  word-spacing: 4px;
+}
+
+#add-popup button {
+  margin: 8px;
+  background-color: rgb(55, 50, 156);
+}
+
+#add-popup button:hover {
+  background-color: rgba(91, 176, 245, 0.692);
+}
+
+#add-popup .add-btn-close {
+  margin-top: 100px;
+  width: 170px;
+}
+
 .input-box input {
   width: 85%;
   padding: 10px;
@@ -317,9 +395,28 @@ nav {
   color: #FFFFFF;
 }
 
+#add-popup .input-box input {
+  width: 50%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.322);
+  background-color: #f0f0f000;
+  font-size: 18px;
+  font-weight: 500;
+  padding-left: 20px;
+  transition: all 0.4s ease;
+  color: #FFFFFF;
+}
+
 .input-box input:focus {
   outline: none;
-  border: 2px solid rgba(255, 255, 255, 0.815);
+  border: 2px solid rgba(255, 255, 255, 0.822);
+}
+
+#add-popup .input-box input:focus {
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.822);
 }
 
 .input-box input::placeholder {
@@ -355,7 +452,7 @@ nav {
   height: 60px;
   width: 60px;
   background: transparent;
-  margin: 30px;
+  margin: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.644);
   border: 2px solid rgba(255, 255, 255, 0.322);
 }
@@ -363,4 +460,13 @@ nav {
 .add-btn:hover {
   background-color: rgba(255, 255, 255, 0.432);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.315);
+}
+
+#add-popup .add-ctct-btn {
+  width: 220px;
+  height: 65px;
+  margin-top: 60px;
+  background-color: rgba(252, 120, 59, 0.61);
+  font-size: 20px;
+  font-weight: 700;
 }

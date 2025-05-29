@@ -2,8 +2,6 @@
 <html>
   <head>
     <title>Galaxy Contacts</title>
-    <script type="text/javascript" src="js/md5.js"></script>
-    <script type="text/javascript" src="js/code.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="../css/styles.css" rel="stylesheet">
   </head>
@@ -28,15 +26,27 @@
       <div class="content">
         <h2>Contact List</h2>
         
-        
         <div class="search-div">
           <form action="">
             <input type="text" placeholder="Search Contact">
             <button type="submit" id="search-button"><i class='bx-sm bx bx-search'></i></button>
           </form>
-          <button class="add-btn"><i class='bx-md bx bxs-user-plus'></i></button>
+          <div class ="buttons-div">
+            <button class="add-btn"><i class='bx-md bx bx-filter'></i></button>
+            <button id="add-btn" class="add-btn"><i class='bx-md bx bxs-user-plus'></i></button>
+          </div>
         </div>
 
+        <div id="add-popup">
+          <div id="popup" class="content input-box">
+            <h3>Contact Info</h3>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="tel" placeholder="Phone Number" required>
+            <button type="submit" class="add-ctct-btn">Add Contact</button>
+            <button id="add-btn-close" class="add-btn-close">Close</button>
+          </div>
+        </div>
 
         <ul class = contact-list>
           <li>
@@ -82,5 +92,6 @@
       <a href="/index.html" ><button>Temporary Return Button</button></a>
     </div>
     
+    <script type="text/javascript" src="../js/script.js"></script>
   </body>
 </html>
