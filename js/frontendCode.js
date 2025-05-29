@@ -20,7 +20,7 @@ function doLogin(){
     let password = document.getElementById("loginPassword").value;
 
     // hashes password using md5.js for security
-    var hash = md5(password);
+    let hash = md5(password);
 
     // checks if name and password are within requirements
     if (!validLoginForm(name, password)) {
@@ -85,7 +85,7 @@ function saveCookie() {
 // checks if signup is within the username and password restr
 function validSignUpForm(fName, lName, user, pass) {
 
-    let fNameErr = lNameErr = userErr = passErr = true;
+    let [fNameErr, lNameErr, userErr, passErr] = [true, true, true, true];
 
     if (fName == "") {
         console.log("FIRST NAME IS BLANK");
@@ -126,7 +126,7 @@ function validSignUpForm(fName, lName, user, pass) {
         console.log("PASSWORD IS BLANK");
     }
     else {
-        let regex = /(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*]).{8,32}/;
+        let regex = /(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%^&*.]).{8,32}/;
 
         if (regex.test(pass) == false) {
             console.log("PASSWORD IS NOT VALID");
@@ -157,15 +157,15 @@ function doSignup() {
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
-    // check if an account with this information exists already
+    // checks field syntax
     if (!validSignUpForm(firstName, lastName, username, password)) {
-        document.getElementById("signupResult").innerHTML = "invalid signup";
+        document.getElementById("errorDiv").innerHTML = "invalid signup";
         return;
     }
 
     let hash = md5(password);
 
-    document.getElementById("signupResult").innerHTML = "";
+    document.getElementById("errorDiv").innerHTML = "";
 
     let tmp = {
         firstName: firstName,
@@ -526,7 +526,7 @@ function delete_row(no) {
     // checks if contact is valid
 function validAddContact(firstName, lastName, phone, email) {
 
-    let fNameErr = lNameErr = phoneErr = emailErr = true;
+    let [fNameErr, lNameErr, phoneErr, emailErr] = [true, true, true, true];
 
     if (firstName == "") {
         console.log("FIRST NAME IS BLANK");
