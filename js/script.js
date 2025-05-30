@@ -14,8 +14,17 @@ window.closeAddUserPopup = closeAddUserPopup;
 
 function handleRegistration() {
     document.getElementById("register-form").addEventListener("submit", (e) => {
-    e.preventDefault(); // Prevent page reload 
-    utils.doSignup();
+        e.preventDefault(); // Prevent page reload 
+        utils.doSignup();
     });
 }
 window.handleRegistration = handleRegistration;
+
+function handleLogin() {
+    console.log("handleLogin called");
+    document.getElementById("login-form").addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent page reload 
+        utils.doLogin();
+    });
+}
+window.handleLogin = handleLogin;
