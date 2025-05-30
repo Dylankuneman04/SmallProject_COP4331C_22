@@ -1,5 +1,13 @@
 import utils from './frontendCode.js';
 
+const path = window.location.pathname;
+const hash = window.location.hash;
+
+if (path.endsWith('contacts.html')) {
+    user = readCookie();
+    // make a function to display contacts on server based on user.id
+}
+
 function openAddUserPopup() {
     const popup = document.getElementById('add-popup');
     popup.classList.add('open');
@@ -30,9 +38,12 @@ function handleLogin() {
 window.handleLogin = handleLogin;
 
 function addUser() {
-    document.getElementById("add-contact").addEventListener("submit", (e) => {
+    document.getElementById("popup").addEventListener("submit", (e) => {
         e.preventDefault(); // Prevent page reload 
         utils.addContact();
     });
 }
 window.addUser = addUser;
+
+function doNothing(){return;}
+window.doNothing = doNothing;

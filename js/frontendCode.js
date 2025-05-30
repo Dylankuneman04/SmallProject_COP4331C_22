@@ -158,14 +158,8 @@ function doSignup() {
     // add name, lastname, username and password for new account
     firstName = document.getElementById("firstName").value;
     lastName = document.getElementById("lastName").value;
-
     username = document.getElementById("username").value;
     password = document.getElementById("password").value;
-
-    console.log("firstName: " + firstName + " " + typeof firstName);
-    console.log("lastName: " + lastName + " " + typeof lastName);
-    console.log("username: " + username + " " + typeof username);   
-    console.log("password: " + password + " " + typeof password);
 
     // checks field syntax
     if (!validSignUpForm(firstName, lastName, username, password)) {
@@ -310,9 +304,16 @@ function readCookie() {
     }
 
     else {
-        document.getElementById("userName").innerHTML = "Welcome, " + firstName + " " + lastName + "!";
+        document.getElementById("displayName").innerHTML = "Welcome, " + firstName + " " + lastName + "!";
     }
 
+    temp = {
+        id: userId,
+        firstName: firstName,
+        lastName: lastName
+    }
+
+    return temp;
 }
 
 // this function just makes your info blank and sends you to login screen
@@ -325,26 +326,22 @@ function doLogout() {
     window.location.href = "index.html";
 }
 
-// shows all names
-function showTable() {
-    let x = document.getElementById("addMe");
-    let contacts = document.getElementById("contactsTable")
-    if (x.style.display === "none") {
-        x.style.display = "block";
-        contacts.style.display = "none";
-    } else {
-        x.style.display = "none";
-        contacts.style.display = "block";
-    }
-}
 
-    // adds new contact
+
+// adds new contact
 function addContact() {
 
-    let firstname = document.getElementById("contactTextFirst").value;
-    let lastname = document.getElementById("contactTextLast").value;
-    let phonenumber = document.getElementById("contactTextNumber").value;
-    let emailaddress = document.getElementById("contactTextEmail").value;
+    console.log("Adding contact...");
+
+    let firstname = "";
+    let lastname = "";
+    let phonenumber = "";
+    let emailaddress = "";
+
+    firstname = document.getElementById("contactTextFirst").value;
+    lastname = document.getElementById("contactTextLast").value;
+    phonenumber = document.getElementById("contactTextNumber").value;
+    emailaddress = document.getElementById("contactTextEmail").value;
 
     if (!validAddContact(firstname, lastname, phonenumber, emailaddress)) {
         console.log("INVALID FIRST NAME, LAST NAME, PHONE, OR EMAIL SUBMITTED");
@@ -372,10 +369,10 @@ function addContact() {
             if (this.readyState == 4 && this.status == 200) {
                 console.log("Contact has been added");
                 // Clear input fields in form 
-                document.getElementById("addMe").reset();
-                // reload contacts table and switch view to show
-                loadContacts();
-                showTable();
+                document.getElementById("popup").reset();
+                // LOAD CONTACTS FROM SERVER
+                // HERE
+                addContactCard(tmp);
             }
         };
         xhr.send(jsonPayload);
@@ -384,6 +381,24 @@ function addContact() {
     }
 }
 
+function addContactCard(person) {
+    const li = document.createElement('li');
+    const div = document.createElement('div');
+    div.className = 'contact-card';
+    div.innerHTML = `
+        <h3>${person.FirstName} ${person.LastName}</h3>
+        <p>Email: ${person.EmailAddress}</p>
+        <p>Phone: ${person.PhoneNumber}</p>
+        <div class="contact-actions">
+            <button class="edit-btn" onclick="doNothing())">Edit</button>
+            <button class="delete-btn" onclick="doNothing()">Delete</button>
+        </div>
+    `;
+    li.appendChild(div);
+    document.getElementById('contact-list').appendChild(li);
+    // Note: doNothing() is a placeholder function for now.
+    // chnge doNothing() to the actual functions for editing and deleting contacts
+}
 
     // fetches contacts and returns them
 function loadContacts() {
@@ -628,7 +643,6 @@ export default{
     validLoginForm,
     readCookie,
     doLogout,
-    showTable,
     addContact,
     loadContacts,
     edit_row,

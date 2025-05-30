@@ -12,13 +12,11 @@
       <div>
         <h1 class="logo">Logo</h1>
       </div>
-      <nav>
-        <ul class ="nav-links">
-          <li><a href="#">option</a></li>
-          <li><a href="#">option</a></li>
-          <li><a href="#">option</a></li>
-        </ul>
-      </nav>
+
+      <div>
+        <h1 class="logo" id="displayName"></h1>
+      </div>
+      
       <a href="#"><button>About Us</button></a>
     </header>
 
@@ -38,26 +36,26 @@
         </div>
 
         <div id="add-popup">
-          <div id="popup" class="content input-box">
+          <form id="popup" class="content input-box">
             <h3>Contact Info</h3>
-            <input id="firstName" type="text" placeholder="First Name" required>
-            <input id="lastName" type="text" placeholder="Last Name" required>
-            <input id="email" type="email" placeholder="Email" required>
-            <input id="phone" type="tel" placeholder="Phone Number" required>
+            <input id="contactTextFirst" type="text" placeholder="First Name" required>
+            <input id="contactTextLast" type="text" placeholder="Last Name" required>
+            <input id="contactTextEmail" type="email" placeholder="Email" required>
+            <input id="contactTextNumber" type="tel" placeholder="Phone Number" required>
+            <div id="addResult"></div>
             <button type="submit" class="add-ctct-btn" id="add-contact" onclick="addUser()">Add Contact</button>
-            <button id="add-btn-close" class="add-btn-close" onclick="closeAddUserPopup()">Close</button>
-          </div>
+            <button id="add-btn-close" type="button" class="add-btn-close" onclick="closeAddUserPopup()">Close</button>
+          </form>
         </div>
 
-        <ul class = contact-list>
+        <ul class = contact-list id="contact-list">
           <li>
-            <a href="#">
-              <div class="contact-card">
-                Contact 1
-              </div>
-            </a>
+            <div class="contact-card">
+              Contact 1
+            </div>
           </li>
         </ul>
+        
       </div>
     </div>
 

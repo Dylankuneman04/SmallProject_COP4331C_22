@@ -302,7 +302,6 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: -1;
   border-radius:26px;
   z-index: -1;
   opacity: 0;
@@ -477,6 +476,10 @@ nav {
 .pwrd-reqs {
   opacity: 0.8;
   margin-bottom: 30px;
+}
+
+#addResult {
+  font-size: 18px;
 }
 
 #errorDiv {
