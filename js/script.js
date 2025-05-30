@@ -1,11 +1,33 @@
 import utils from './frontendCode.js';
 
-const path = window.location.pathname;
-const hash = window.location.hash;
+let path = window.location.pathname;
 
 if (path.endsWith('contacts.html')) {
-    user = readCookie();
+    let user = utils.readCookie();
+    document.getElementById("popup").addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent page reload 
+        utils.addContact();
+    });       
+
     // make a function to display contacts on server based on user.id
+}
+
+else if (path.endsWith('login.html')) {
+    document.getElementById("login-form").addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent page reload 
+        utils.doLogin();
+    });
+}
+
+else if (path.endsWith('register.html')) {
+    document.getElementById("register-form").addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent page reload 
+        utils.doSignup();
+    });
+}
+
+function displayContacts(contacts) {
+    // This function will display contacts upon landing on contacts.html 
 }
 
 function openAddUserPopup() {
@@ -19,31 +41,6 @@ function closeAddUserPopup() {
     popup.classList.remove('open');
 }
 window.closeAddUserPopup = closeAddUserPopup;
-
-function handleRegistration() {
-    document.getElementById("register-form").addEventListener("submit", (e) => {
-        e.preventDefault(); // Prevent page reload 
-        utils.doSignup();
-    });
-}
-window.handleRegistration = handleRegistration;
-
-function handleLogin() {
-
-    document.getElementById("login-form").addEventListener("submit", (e) => {
-        e.preventDefault(); // Prevent page reload 
-        utils.doLogin();
-    });
-}
-window.handleLogin = handleLogin;
-
-function addUser() {
-    document.getElementById("popup").addEventListener("submit", (e) => {
-        e.preventDefault(); // Prevent page reload 
-        utils.addContact();
-    });
-}
-window.addUser = addUser;
 
 function doNothing(){return;}
 window.doNothing = doNothing;

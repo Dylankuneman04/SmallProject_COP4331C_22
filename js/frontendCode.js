@@ -9,9 +9,9 @@ const ids = []
 function doLogin(){
 
     // resets logging info
-    let userId = 0;
-    let firstName = "";
-    let lastName = "";
+    userId = 0;
+    firstName = "";
+    lastName = "";
 
     // gets login name and password that has been inputed
     let name = document.getElementById("username").value;
@@ -48,14 +48,14 @@ function doLogin(){
             if (this.readyState == 4 && this.status == 200) {
 
                 let jsonObject = JSON.parse(xhr.responseText);
-                userId = jsonObject.id;
+                userId = jsonObject.UserID;
 
                 if (userId < 1) {
                     document.getElementById("errorDiv").innerHTML = "User/Password combination incorrect";
                     return;
                 }
-                firstName = jsonObject.firstName;
-                lastName = jsonObject.lastName;
+                firstName = jsonObject.FirstName;
+                lastName = jsonObject.LastName;
 
                 saveCookie();
                 window.location.href = "contacts.html";
@@ -75,9 +75,12 @@ function saveCookie() {
     let minutes = 20;
     let date = new Date();
     date.setTime(date.getTime() + (minutes * 60 * 1000));
+    let expires = ";expires=" + date.toGMTString() + ";path=/";
 
     // documents when a user is logged or registered
-    document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+    document.cookie = "firstName=" + firstName + expires;
+    document.cookie = "lastName=" + lastName + expires;
+    document.cookie = "userId=" + userId + expires;
 }
 
 // checks if signup is within the username and password restr
@@ -278,7 +281,7 @@ function readCookie() {
     let data = document.cookie;
 
     // splits the cookie by ',' 
-    let splits = data.split(",");
+    let splits = data.split(";");
 
     for (let i = 0; i < splits.length; i++) {
 
@@ -307,7 +310,7 @@ function readCookie() {
         document.getElementById("displayName").innerHTML = "Welcome, " + firstName + " " + lastName + "!";
     }
 
-    temp = {
+    let temp = {
         id: userId,
         firstName: firstName,
         lastName: lastName
@@ -382,8 +385,8 @@ function addContact() {
 }
 
 function addContactCard(person) {
-    const li = document.createElement('li');
-    const div = document.createElement('div');
+    let li = document.createElement('li');
+    let div = document.createElement('div');
     div.className = 'contact-card';
     div.innerHTML = `
         <h3>${person.FirstName} ${person.LastName}</h3>
