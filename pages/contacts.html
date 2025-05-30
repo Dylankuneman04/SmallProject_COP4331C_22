@@ -36,13 +36,15 @@
             <button type="button" id="add-btn" class="add-btn" onclick="openAddUserPopup()"><i class='bx-md bx bxs-user-plus'></i></button>
           </div>
         </div>
+
         <div id="add-popup">
           <div id="popup" class="content input-box">
             <h3>Contact Info</h3>
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="tel" placeholder="Phone Number" required>
-            <button type="submit" class="add-ctct-btn">Add Contact</button>
+            <input id="firstName" type="text" placeholder="First Name" required>
+            <input id="lastName" type="text" placeholder="Last Name" required>
+            <input id="email" type="email" placeholder="Email" required>
+            <input id="phone" type="tel" placeholder="Phone Number" required>
+            <button type="submit" class="add-ctct-btn" id="add-contact" onclick="addUser()">Add Contact</button>
             <button id="add-btn-close" class="add-btn-close" onclick="closeAddUserPopup()">Close</button>
           </div>
         </div>
@@ -52,34 +54,6 @@
             <a href="#">
               <div class="contact-card">
                 Contact 1
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="contact-card">
-                Contact 2
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="contact-card">
-                Contact 3
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="contact-card">
-                Contact 4
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <div class="contact-card">
-                Contact 5
               </div>
             </a>
           </li>

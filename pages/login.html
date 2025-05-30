@@ -12,25 +12,27 @@
         <h1>Login</h1>
         <div class="input-box">
           <div>
-            <input nput type="text" placeholder="Username" required />
+            <input id="username" type="text" placeholder="Username" required />
             <i class='bx bxs-user' ></i>
           </div>
           <div>
-            <input type="password" placeholder="Password" required />
+            <input id="password" type="password" placeholder="Password" required />
             <i class='bx bxs-lock-alt' ></i>
           </div>
-          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Forgot password?</a>
+          <a id="forgot" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Forgot password?</a>
+          <div id="errorDiv"></div>
         </div>        
         <div id="login-button-div">
-          <button type="button" class="button" id="login-button" onclick="handleLogin()">Login</button>
+          <button type="submit" class="button" id="login-button" onclick="handleLogin()">Login</button>
           <div>
             <p>Don't have a spaceship? <a href="/pages/register.html">Register</a></p>
           </div>
         </div>
       </form>
     </div>
-    <a href="/pages/user.html"><button>Go to Logged in Page (Placeholder)</button></a>
+    <a href="/pages/contacts.html"><button>Go to Logged in Page (Placeholder)</button></a>
   </div>
+  <script src="../js/md5.js"></script>
   <script type="module" src="../js/script.js"></script>
 </body>
 </html>

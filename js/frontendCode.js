@@ -14,19 +14,19 @@ function doLogin(){
     let lastName = "";
 
     // gets login name and password that has been inputed
-    let name = document.getElementById("loginName").value;
-    let password = document.getElementById("loginPassword").value;
+    let name = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
 
     // hashes password using md5.js for security
     let hash = md5(password);
 
     // checks if name and password are within requirements
     if (!validLoginForm(name, password)) {
-        document.getElementById("loginResult").innerHTML = "invalid username or password";
+        document.getElementById("errorDiv").innerHTML = "Invalid username or password";
         return;
     }
 
-    document.getElementById("loginResult").innerHTML = "";
+    document.getElementById("errorDiv").innerHTML = "";
 
     let tmp = {
         Username: name,
@@ -65,7 +65,7 @@ function doLogin(){
         // sends name and password json
         xhr.send(jsonPayload);
     } catch (err) {
-        document.getElementById("loginResult").innerHTML = err.message;
+        document.getElementById("errorDiv").innerHTML = err.message;
     }
 }
 

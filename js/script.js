@@ -21,10 +21,18 @@ function handleRegistration() {
 window.handleRegistration = handleRegistration;
 
 function handleLogin() {
-    console.log("handleLogin called");
+
     document.getElementById("login-form").addEventListener("submit", (e) => {
         e.preventDefault(); // Prevent page reload 
         utils.doLogin();
     });
 }
 window.handleLogin = handleLogin;
+
+function addUser() {
+    document.getElementById("add-contact").addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent page reload 
+        utils.addContact();
+    });
+}
+window.addUser = addUser;
