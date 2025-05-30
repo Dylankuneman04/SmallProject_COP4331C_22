@@ -4,6 +4,9 @@ let path = window.location.pathname;
 
 if (path.endsWith('contacts.html')) {
     let user = utils.readCookie();
+
+    utils.loadContacts(user.id);
+
     document.getElementById("popup").addEventListener("submit", (e) => {
         e.preventDefault(); // Prevent page reload 
         utils.addContact();
@@ -26,10 +29,6 @@ else if (path.endsWith('register.html')) {
     });
 }
 
-function displayContacts(contacts) {
-    // This function will display contacts upon landing on contacts.html 
-}
-
 function openAddUserPopup() {
     const popup = document.getElementById('add-popup');
     popup.classList.add('open');
@@ -44,3 +43,12 @@ window.closeAddUserPopup = closeAddUserPopup;
 
 function doNothing(){return;}
 window.doNothing = doNothing;
+
+function deleteContact(userID, contactID) {
+    if (confirm("Are you sure you want to delete this contact?")) {
+        utils.deleteFromDB(userID, contactID);
+    } else {
+        doNothing();
+    }
+}
+window.deleteContact = deleteContact

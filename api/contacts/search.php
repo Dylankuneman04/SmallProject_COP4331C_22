@@ -31,7 +31,7 @@ if ($db->connect_error) {
 }
 
 $query = "%{$query}%"; // '%' is a wildcard for matching zero, one, or more characters
-$search_stmt = $db->prepare("SELECT * FROM Contacts WHERE UserID=? AND (FirstName LIKE ? OR LastName LIKE ?) LIMIT 10");
+$search_stmt = $db->prepare("SELECT * FROM Contacts WHERE UserID=? AND (FirstName LIKE ? OR LastName LIKE ?) LIMIT 100");
 $search_stmt->bind_param("iss", $user_id, $query, $query);
 $search_stmt->execute();
 $search_res = $search_stmt->get_result();

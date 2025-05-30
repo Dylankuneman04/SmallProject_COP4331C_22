@@ -373,8 +373,6 @@ function addContact() {
                 console.log("Contact has been added");
                 // Clear input fields in form 
                 document.getElementById("popup").reset();
-                // LOAD CONTACTS FROM SERVER
-                // HERE
                 addContactCard(tmp);
             }
         };
@@ -384,7 +382,7 @@ function addContact() {
     }
 }
 
-function addContactCard(person) {
+function addContactCard(person, userID) {
     let li = document.createElement('li');
     let div = document.createElement('div');
     div.className = 'contact-card';
@@ -393,8 +391,8 @@ function addContactCard(person) {
         <p>Email: ${person.EmailAddress}</p>
         <p>Phone: ${person.PhoneNumber}</p>
         <div class="contact-actions">
-            <button class="edit-btn" onclick="doNothing())">Edit</button>
-            <button class="delete-btn" onclick="doNothing()">Delete</button>
+            <button class="edit-btn" onclick="doNothing()">Edit</button>
+            <button class="delete-btn" onclick="deleteContact(${userID}, ${person.ContactID})">Delete</button>
         </div>
     `;
     li.appendChild(div);
@@ -404,11 +402,11 @@ function addContactCard(person) {
 }
 
     // fetches contacts and returns them
-function loadContacts() {
+function loadContacts(userId) {
 
     let tmp = {
-    search: "",
-    userId: userId
+    UserID: userId,
+    Query: ""
     };
 
     let jsonPayload = JSON.stringify(tmp);
@@ -418,30 +416,26 @@ function loadContacts() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
+    console.log("heyyyy")
+
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
+
+                console.log("jsonObject type" + typeof jsonObject); 
+                console.log("JSON OBJECT: " + JSON.stringify(jsonObject));  
+
                 if (jsonObject.error) {
                     console.log(jsonObject.error);
                     return;
                 }
-                let text = "<table border='1'>"
-                for (let i = 0; i < jsonObject.results.length; i++) {
-                    ids[i] = jsonObject.results[i].ID
-                    text += "<tr id='row" + i + "'>"
-                    text += "<td id='first_Name" + i + "'><span>" + jsonObject.results[i].FirstName + "</span></td>";
-                    text += "<td id='last_Name" + i + "'><span>" + jsonObject.results[i].LastName + "</span></td>";
-                    text += "<td id='email" + i + "'><span>" + jsonObject.results[i].EmailAddress + "</span></td>";
-                    text += "<td id='phone" + i + "'><span>" + jsonObject.results[i].PhoneNumber + "</span></td>";
-                    text += "<td>" +
-                        "<button type='button' id='edit_button" + i + "' class='w3-button w3-circle w3-lime' onclick='edit_row(" + i + ")'>" + "<span class='glyphicon glyphicon-edit'></span>" + "</button>" +
-                        "<button type='button' id='save_button" + i + "' value='Save' class='w3-button w3-circle w3-lime' onclick='save_row(" + i + ")' style='display: none'>" + "<span class='glyphicon glyphicon-saved'></span>" + "</button>" +
-                        "<button type='button' onclick='delete_row(" + i + ")' class='w3-button w3-circle w3-amber'>" + "<span class='glyphicon glyphicon-trash'></span> " + "</button>" + "</td>";
-                    text += "<tr/>"
+
+                // Clear the contact list before adding current contacts
+                document.getElementById('contact-list').innerHTML = '';
+                for (let i = 0; i < jsonObject.length; i++) {
+                    addContactCard(jsonObject[i], userId);
                 }
-                text += "</table>"
-                document.getElementById("tbody").innerHTML = text;
             }
         };
         xhr.send(jsonPayload);
@@ -513,41 +507,30 @@ function save_row(no) {
     }
 }
 
-// deletes row based on number
-function delete_row(no) {
-    let namef_val = document.getElementById("first_Name" + no).innerText;
-    let namel_val = document.getElementById("last_Name" + no).innerText;
-    nameOne = namef_val.substring(0, namef_val.length);
-    nameTwo = namel_val.substring(0, namel_val.length);
-    let check = confirm('Confirm deletion of contact: ' + nameOne + ' ' + nameTwo);
-    if (check === true) {
-        document.getElementById("row" + no + "").outerHTML = "";
-        let tmp = {
-            firstName: nameOne,
-            lastName: nameTwo,
-            userId: userId
+// deletes contact from the DataBase
+function deleteFromDB(userID, contactID) {
+    let tmp = {
+        UserID: userID,
+        ContactID: contactID
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/contacts/delete.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("Contact has been deleted");
+                loadContacts(userID);
+            }
         };
-
-        let jsonPayload = JSON.stringify(tmp);
-
-        let url = urlBase + '/contacts/delete.' + extension;
-
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-        try {
-            xhr.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-
-                    console.log("Contact has been deleted");
-                    loadContacts();
-                }
-            };
-            xhr.send(jsonPayload);
-        } catch (err) {
-            console.log(err.message);
-        }
-
+        xhr.send(jsonPayload);
+    } catch (err) {
+        console.log(err.message);
     }
 }
 
@@ -650,7 +633,7 @@ export default{
     loadContacts,
     edit_row,
     save_row,
-    delete_row,
+    deleteFromDB,
     validAddContact,
     clickLogin,
     clickRegister

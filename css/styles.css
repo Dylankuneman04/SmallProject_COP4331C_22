@@ -45,7 +45,7 @@ body {
   backdrop-filter: blur(20px);
 }
 
-#login-body .content, #register-body .content, #home-body .content, #user-body .content {
+#login-body .content, #register-body .content, #home-body .content, #contacts-body .content {
   width: 100%;
   max-width: 800px;
   height: 100%;
@@ -61,7 +61,7 @@ body {
   border: rgba(255, 255, 255, 0.322) 2px solid;
 }
 
-#user-body #add-popup .content {
+#contacts-body #add-popup .content {
   width: 100%;
   max-width: 800px;
   height: 100%;
@@ -93,9 +93,13 @@ body {
   height: 200px;
 }
 
-#user-body .content {
+#contacts-body .content {
   max-width: 1300px;
-  height: 100%;
+  height: auto;
+}
+
+#contacts-body .container {
+  height: auto;
 }
 
 .content h2 {
