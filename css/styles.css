@@ -7,7 +7,13 @@
   padding: 0;
 }
 
+a, button, [role="button"], input[type="button"], input[type="submit"], .clickable {
+ cursor: url('/images/cursor(3).cur'), pointer !important;
+}
+
 body {
+  cursor: url('/images/cursor(3).cur'), auto;
+  
   margin: 0;
   padding: 0;
   height: 100vh;
