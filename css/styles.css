@@ -95,10 +95,12 @@ body {
 
 #contacts-body .content {
   max-width: 1300px;
+  min-height: 800px;
   height: auto;
 }
 
 #contacts-body .container {
+  min-height: 800px;
   height: auto;
 }
 

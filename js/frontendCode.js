@@ -402,7 +402,7 @@ function addContactCard(person, userID) {
 }
 
     // fetches contacts and returns them
-function loadContacts(userId) {
+function loadContacts(userId) { 
 
     let tmp = {
     UserID: userId,
@@ -422,9 +422,6 @@ function loadContacts(userId) {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
-
-                console.log("jsonObject type" + typeof jsonObject); 
-                console.log("JSON OBJECT: " + JSON.stringify(jsonObject));  
 
                 if (jsonObject.error) {
                     console.log(jsonObject.error);
