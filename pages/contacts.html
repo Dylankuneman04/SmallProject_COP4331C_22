@@ -24,27 +24,32 @@
     </div></div>
 
     <div class="popup" id="create-contact-popup-container">
-        <form id="create-contact-form" class="content input-box">
+        <form id="create-contact-form" class="inner input-box">
           <h3>Create a new contact</h3>
           <input id="contactTextFirst" type="text" placeholder="First Name" required>
           <input id="contactTextLast" type="text" placeholder="Last Name" required>
           <input id="contactTextEmail" type="email" placeholder="Email" required>
           <input id="contactTextNumber" type="tel" placeholder="Phone Number" required>
-          <div id="addResult"></div>
+          <div class="errorMessage" id="createContactError"></div>
+          <div>
           <button type="submit" class="add-ctct-btn" id="add-contact">Add Contact</button>
           <button id="add-btn-close" type="button" class="add-btn-close" onclick="closeCreateContactPopup()">Cancel</button>
+          </div>
         </form>
     </div>
 
     <div class="popup" id="edit-contact-popup-container">
-      <form id="edit-contact-form" class="content input-box">
+      <form id="edit-contact-form" class="inner input-box">
         <h3>Edit contact</h3>
         <input id="edit-contact-firstname" type="text" placeholder="First Name" required>
         <input id="edit-contact-lastname" type="text" placeholder="Last Name" required>
         <input id="edit-contact-email" type="email" placeholder="Email" required>
         <input id="edit-contact-phone" type="tel" placeholder="Phone Number" required>
+        <div class="errorMessage" id="editContactError"></div>
+        <div>
         <button type="submit" class="add-ctct-btn" id="edit-contact">Update</button>
         <button id="add-btn-close" type="button" class="add-btn-close" onclick="closeEditContactPopup()">Cancel</button>
+        </div>
       </form>
   </div>
 

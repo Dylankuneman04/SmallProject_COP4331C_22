@@ -66,7 +66,7 @@ body {
   border: rgba(255, 255, 255, 0.322) 2px solid;
 }
 
-#contacts-body #add-popup .content {
+#contacts-body .popup .content {
   width: 100%;
   max-width: 800px;
   height: 100%;
@@ -112,20 +112,24 @@ body {
 .content h2 {
   font-size: 24px;
   color: #FFFFFF;
-  margin-bottom: 20px;
 }
 
 .title {
-  font-size: 50px;
-  margin: 2% 5%;
+  font-size: 30px;
+  margin-top: 15px;
   text-align: center;
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
+#home-content {
+  white-space: nowrap;
+}
 
 
 .description {
     font-size: 32px;
-    padding: 25px;
+    margin-bottom: 15px;
 }
 
 li, a, button {
@@ -136,7 +140,10 @@ li, a, button {
   text-decoration: none;
 }
 
-
+#inner-title {
+  text-align: center;
+  font-size: 20px;
+}
 
 header {
   display: flex;
@@ -144,6 +151,10 @@ header {
   justify-content: space-between;
   align-self: normal;
   padding: 30px 10%;    
+}
+
+#displayName {
+  font-size: 30px;
 }
 
 header h1 {
@@ -296,31 +307,6 @@ nav {
   padding: 0;
 }
 
-#add-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius:26px;
-  z-index: -1;
-  opacity: 0;
-}
-
-#add-popup.open {
-  z-index: 999;
-  opacity: 1;
-  transition: all 0.2s ease-out;
-  background-color: gray;
-}
-
 .tmp {
   display: flex;
   justify-content: center;
@@ -348,11 +334,14 @@ nav {
 
 }
 
+#forgot {
+  margin-bottom: 15px;
+}
+
 .login-form a {
   color: rgb(137, 192, 255);
   text-decoration: none;
   font-size: 16px;
-  margin-top: 10px;
   transition: all 0.2s ease;
 }
 
@@ -364,28 +353,27 @@ nav {
 .input-box {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
-#add-popup h3 {
+.popup h3 {
   font-size: 40px;
-  margin: 60px;
   font-weight: 900;
   letter-spacing: 1px;
   word-spacing: 4px;
+  text-align: center;
 }
 
-#add-popup button {
-  margin: 8px;
-  background-color: rgb(55, 50, 156);
+.popup button {
+    width: 220px;
+    background-color: rgba(252, 120, 59, 0.61);
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 15px;
 }
 
-#add-popup button:hover {
+.popup button:hover {
   background-color: rgba(91, 176, 245, 0.692);
-}
-
-#add-popup .add-btn-close {
-  margin-top: 100px;
-  width: 170px;
 }
 
 .input-box input {
@@ -402,7 +390,7 @@ nav {
   color: #FFFFFF;
 }
 
-#add-popup .input-box input {
+.popup .input-box input {
   width: 50%;
   padding: 10px;
   margin: 10px 0;
@@ -421,7 +409,7 @@ nav {
   border: 2px solid rgba(255, 255, 255, 0.822);
 }
 
-#add-popup .input-box input:focus {
+.popup .input-box input:focus {
   outline: none;
   border: 2px solid rgba(255, 255, 255, 0.822);
 }
@@ -440,7 +428,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 #login-button-div p{
@@ -449,7 +437,6 @@ nav {
 }
 
 #home-body button {
-  width: 400px;
   height: 60px;
   font-size: 18px;
   font-weight: 600;
@@ -471,15 +458,6 @@ nav {
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.315);
 }
 
-#add-popup .add-ctct-btn {
-  width: 220px;
-  height: 65px;
-  margin-top: 60px;
-  background-color: rgba(252, 120, 59, 0.61);
-  font-size: 20px;
-  font-weight: 700;
-}
-
 .pwrd-reqs {
   opacity: 0.8;
 }
@@ -497,20 +475,17 @@ nav {
   color: #ffffff;
 }
 
-.forgot {
-  padding-left: 20px;
+.errorMessage, .successMessage {
+  font-size: 18px;
+  text-align: center;
 }
 
-#statusMessage {
-
+.errorMessage {
+  color: #ff787f;
 }
 
-#errorMessage {
-  color: red;
-}
-
-#successMessage {
-  color: green;
+.successMessage {
+  color: #12e08e;
 }
 
 #planetLogo {
@@ -528,4 +503,14 @@ nav {
 #create-contact-popup-container, #edit-contact-popup-container,
  #create-contact-form, #edit-contact-form {
   height: 100%;
+}
+
+.popup .inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  
+  border-radius: 28px;
+  backdrop-filter: blur(20px);
 }

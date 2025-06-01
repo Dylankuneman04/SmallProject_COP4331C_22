@@ -8,7 +8,7 @@ const ids = []
 
 function doLogin(){
 
-    document.getElementById("errorMessage").innerHTML = "";
+    document.getElementById("loginErrorMessage").innerHTML = "";
 
     // resets logging info
     userId = 0;
@@ -24,7 +24,7 @@ function doLogin(){
 
     // checks if name and password are within requirements
     if (!validLoginForm(name, password)) {
-        document.getElementById("errorMessage").innerHTML = "Invalid username or password";
+        document.getElementById("loginErrorMessage").innerHTML = "Incorrect username or password";
         return;
     }
 
@@ -51,7 +51,7 @@ function doLogin(){
                 userId = jsonObject.UserID;
 
                 if (userId < 1) {
-                    document.getElementById("errorMessage").innerHTML = "Invalid username or password";
+                    document.getElementById("loginErrorMessage").innerHTML = "Invalid username or password";
                     return;
                 }
                 firstName = jsonObject.FirstName;
@@ -150,8 +150,8 @@ function validSignUpForm(fName, lName, user, pass) {
 }
 
 function doSignup() {
-    document.getElementById("errorMessage").innerHTML = "";
-    document.getElementById("successMessage").innerHTML = "";
+    document.getElementById("registerErrorMessage").innerHTML = "";
+    document.getElementById("registerSuccessMessage").innerHTML = "";
 
     let userId = 0;
     let firstName = "";
@@ -167,7 +167,7 @@ function doSignup() {
 
     // checks field syntax
     if (!validSignUpForm(firstName, lastName, username, password)) {
-        document.getElementById("errorMessage").innerHTML = "Your password does not meet the critera";
+        document.getElementById("registerErrorMessage").innerHTML = "Your password does not meet the criteria";
         return;
     }
 
@@ -190,27 +190,17 @@ function doSignup() {
 
     try {
         xhr.onreadystatechange = function () {
-
             if (this.readyState != 4) {
                 return;
             }
 
             // returns 409 if user exists
             if (this.status == 409) {
-                document.getElementById("errorMessage").innerHTML = "Username taken";
-                return;
+                document.getElementById("registerErrorMessage").innerHTML = "Username taken";
             }
 
             if (this.status == 200) {
-
-                let jsonObject = JSON.parse(xhr.responseText);
-                userId = jsonObject.id;
-                document.getElementById("successMessage").innerHTML = "Successfully registered! Logging in...";
-                firstName = jsonObject.firstName;
-                lastName = jsonObject.lastName;
-                saveCookie();
-
-                setTimeout(function() {window.location.href = "contacts.html";}, 1000);
+                document.getElementById("registerSuccessMessage").innerHTML = "Successfully registered!";
             }
         };
 
@@ -304,7 +294,7 @@ function readCookie() {
 
     // if userId is not in the cookies since it expired: GET OUT! back to start screen
     if (userId < 0) {
-       window.location.href = "/index.html";
+       //window.location.href = "/index.html";
     }
 
    else {
@@ -338,7 +328,7 @@ function doLogout() {
 // adds new contact
 function addContact() {
 
-    console.log("Adding contact...");
+    document.getElementById("createContactError").innerHTML = "";
 
     let firstname = "";
     let lastname = "";
@@ -351,7 +341,7 @@ function addContact() {
     emailaddress = document.getElementById("contactTextEmail").value;
 
     if (!validAddContact(firstname, lastname, phonenumber, emailaddress)) {
-        console.log("INVALID FIRST NAME, LAST NAME, PHONE, OR EMAIL SUBMITTED");
+        document.getElementById("createContactError").innerHTML = "Please check the phone number or email";
         return;
     }
 
@@ -468,6 +458,18 @@ function edit_row(id) {
 function doEditContact(payload) {
     payload.UserID = readCookie().id;
     let jsonPayload = JSON.stringify(payload);
+
+    document.getElementById("editContactError").innerHTML = "";
+
+    let firstname = payload.FirstName;
+    let lastname = payload.LastName;
+    let phonenumber = payload.PhoneNumber;
+    let emailaddress = payload.EmailAddress;
+
+    if (!validAddContact(firstname, lastname, phonenumber, emailaddress)) {
+        document.getElementById("editContactError").innerHTML = "Please check the phone number or email";
+        return;
+    }
 
     let url = urlBase + '/contacts/edit.' + extension;
 
