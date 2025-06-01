@@ -294,7 +294,7 @@ function readCookie() {
 
     // if userId is not in the cookies since it expired: GET OUT! back to start screen
     if (userId < 0) {
-       //window.location.href = "/index.html";
+       window.location.href = "/index.html";
     }
 
    else {
@@ -458,8 +458,6 @@ function edit_row(id) {
 function doEditContact(payload) {
     payload.UserID = readCookie().id;
     let jsonPayload = JSON.stringify(payload);
-
-    document.getElementById("editContactError").innerHTML = "";
 
     let firstname = payload.FirstName;
     let lastname = payload.LastName;

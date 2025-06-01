@@ -35,6 +35,7 @@ window.openEditContactPopup = function(firstName, lastName, email, phone, contac
     editContactEmailAddress.value = email;
     editContactPhoneNumber.value = phone;
     editContactForm.dataset.CurrentContactID = contactId;
+    document.getElementById("editContactError").innerHTML = "";
 }
 
 window.closeEditContactPopup = function() {
