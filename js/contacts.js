@@ -50,6 +50,7 @@ editContactForm.addEventListener("submit", function(e) {
         PhoneNumber: editContactPhoneNumber.value,
         ContactID: editContactForm.dataset.CurrentContactID
     });
+    editContactForm.reset();
     closeEditContactPopup();
 });
 

@@ -375,9 +375,9 @@ function addContact() {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 console.log("Contact has been added");
-                // Clear input fields in form 
-                document.getElementById("create-popup").reset();
-                addContactCard(tmp);
+                loadContacts(readCookie().id, "");
+                document.getElementById("create-contact-form").reset();
+                document.getElementById("create-contact-popup-container").style.display = "none";
             }
         };
         xhr.send(jsonPayload);
@@ -395,7 +395,7 @@ function addContactCard(person, userID) {
         <p>Email: ${person.EmailAddress}</p>
         <p>Phone: ${person.PhoneNumber}</p>
         <div class="contact-actions">
-            <button class="edit-btn" onclick="editContact(${person.FirstName}, ${person.LastName}, ${person.EmailAddress}, ${person.PhoneNumber}, ${person.ContactID})">Edit</button>
+            <button class="edit-btn" onclick="editContact(`${person.FirstName}`, `${person.LastName}`, `${person.EmailAddress}`, `${person.PhoneNumber}`, ${person.ContactID})">Edit</button>
             <button class="delete-btn" onclick="deleteContact(${userID}, ${person.ContactID})">Delete</button>
         </div>
     `;
