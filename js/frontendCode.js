@@ -8,6 +8,8 @@ const ids = []
 
 function doLogin(){
 
+    document.getElementById("errorMessage").innerHTML = "";
+
     // resets logging info
     userId = 0;
     firstName = "";
@@ -22,11 +24,9 @@ function doLogin(){
 
     // checks if name and password are within requirements
     if (!validLoginForm(name, password)) {
-        document.getElementById("errorDiv").innerHTML = "Invalid username or password";
+        document.getElementById("errorMessage").innerHTML = "Invalid username or password";
         return;
     }
-
-    document.getElementById("errorDiv").innerHTML = "";
 
     let tmp = {
         Username: name,
@@ -51,7 +51,7 @@ function doLogin(){
                 userId = jsonObject.UserID;
 
                 if (userId < 1) {
-                    document.getElementById("errorDiv").innerHTML = "User/Password combination incorrect";
+                    document.getElementById("errorMessage").innerHTML = "Invalid username or password";
                     return;
                 }
                 firstName = jsonObject.FirstName;
@@ -65,7 +65,7 @@ function doLogin(){
         // sends name and password json
         xhr.send(jsonPayload);
     } catch (err) {
-        document.getElementById("errorDiv").innerHTML = err.message;
+        document.getElementById("statusMessage").innerHTML = err.message;
     }
 }
 
@@ -150,7 +150,8 @@ function validSignUpForm(fName, lName, user, pass) {
 }
 
 function doSignup() {
-
+    document.getElementById("errorMessage").innerHTML = "";
+    document.getElementById("successMessage").innerHTML = "";
 
     let userId = 0;
     let firstName = "";
@@ -166,13 +167,11 @@ function doSignup() {
 
     // checks field syntax
     if (!validSignUpForm(firstName, lastName, username, password)) {
-        document.getElementById("errorDiv").innerHTML = "invalid signup";
+        document.getElementById("errorMessage").innerHTML = "Your password does not meet the critera";
         return;
     }
 
     let hash = md5(password); 
-
-    document.getElementById("errorDiv").innerHTML = "";
 
     let tmp = {
         FirstName: firstName,
@@ -198,7 +197,7 @@ function doSignup() {
 
             // returns 409 if user exists
             if (this.status == 409) {
-                document.getElementById("errorDiv").innerHTML = "User already exists";
+                document.getElementById("errorMessage").innerHTML = "Username taken";
                 return;
             }
 
@@ -206,10 +205,12 @@ function doSignup() {
 
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
-                document.getElementById("errorDiv").innerHTML = "User added";
+                document.getElementById("successMessage").innerHTML = "Successfully registered! Logging in...";
                 firstName = jsonObject.firstName;
                 lastName = jsonObject.lastName;
                 saveCookie();
+
+                setTimeout(function() {window.location.href = "contacts.html";}, 1000);
             }
         };
 
@@ -302,13 +303,13 @@ function readCookie() {
     }
 
     // if userId is not in the cookies since it expired: GET OUT! back to start screen
-    if (userId < 0) {
-        window.location.href = "index.html";
-    }
+    //if (userId < 0) {
+    //    window.location.href = "index.html";
+    //}
 
-    else {
+   //else {
         document.getElementById("displayName").innerHTML = "Welcome, " + firstName + " " + lastName + "!";
-    }
+   // }
 
     let temp = {
         id: userId,
@@ -372,7 +373,7 @@ function addContact() {
             if (this.readyState == 4 && this.status == 200) {
                 console.log("Contact has been added");
                 // Clear input fields in form 
-                document.getElementById("popup").reset();
+                document.getElementById("create-popup").reset();
                 addContactCard(tmp);
             }
         };
@@ -391,7 +392,7 @@ function addContactCard(person, userID) {
         <p>Email: ${person.EmailAddress}</p>
         <p>Phone: ${person.PhoneNumber}</p>
         <div class="contact-actions">
-            <button class="edit-btn" onclick="doNothing()">Edit</button>
+            <button class="edit-btn" onclick="editContact(${userID}, ${person})">Edit</button>
             <button class="delete-btn" onclick="deleteContact(${userID}, ${person.ContactID})">Delete</button>
         </div>
     `;
@@ -402,11 +403,11 @@ function addContactCard(person, userID) {
 }
 
     // fetches contacts and returns them
-function loadContacts(userId) { 
+function loadContacts(userId, query) { 
 
     let tmp = {
     UserID: userId,
-    Query: ""
+    Query: query
     };
 
     let jsonPayload = JSON.stringify(tmp);
@@ -461,30 +462,9 @@ function edit_row(id) {
     phone.innerHTML = "<input type='text' id='phone_text" + id + "' value='" + phone_data + "'>"
 }
 
-function save_row(no) {
-    let namef_val = document.getElementById("namef_text" + no).value;
-    let namel_val = document.getElementById("namel_text" + no).value;
-    let email_val = document.getElementById("email_text" + no).value;
-    let phone_val = document.getElementById("phone_text" + no).value;
-    let id_val = ids[no]
-
-    document.getElementById("first_Name" + no).innerHTML = namef_val;
-    document.getElementById("last_Name" + no).innerHTML = namel_val;
-    document.getElementById("email" + no).innerHTML = email_val;
-    document.getElementById("phone" + no).innerHTML = phone_val;
-
-    document.getElementById("edit_button" + no).style.display = "inline-block";
-    document.getElementById("save_button" + no).style.display = "none";
-
-    let tmp = {
-        PhoneNumber: phone_val,
-        EmailAddress: email_val,
-        FirstName: namef_val,
-        LastName: namel_val,
-        UserID: id_val
-    };
-
-    let jsonPayload = JSON.stringify(tmp);
+function doEditContact(payload) {
+    payload.UserID = readCookie().id;
+    let jsonPayload = JSON.stringify(payload);
 
     let url = urlBase + '/contacts/edit.' + extension;
 
@@ -494,8 +474,7 @@ function save_row(no) {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                console.log("Contact has been updated");
-                loadContacts();
+                loadContacts(readCookie().id, "");
             }
         };
         xhr.send(jsonPayload);
@@ -629,7 +608,7 @@ export default{
     addContact,
     loadContacts,
     edit_row,
-    save_row,
+    doEditContact,
     deleteFromDB,
     validAddContact,
     clickLogin,

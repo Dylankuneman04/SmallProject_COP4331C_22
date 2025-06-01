@@ -16,7 +16,7 @@
         <div class="input-box">
           <div>
             <div>
-              <input id="firstName" type="text" placeholder="Name" required />
+              <input id="firstName" type="text" placeholder="First Name" required />
               <i class='bx  bx-asterisk'></i> 
             </div>
           </div>
@@ -38,16 +38,15 @@
               <i class='bx  bx-asterisk'></i> 
             </div>
           </div>
-          <div id="errorDiv"></div>
-          <div class = "pwrd-reqs">Must contain a number, a letter, and a special character.
-            <br>Must be at least 8 characters long.
-          </div>
+          <div class = "pwrd-reqs">Your password must contain a number, a letter, a special character, and must be at least 8 characters long.</div>
+          <div id="errorMessage"></div>
+          <div id="successMessage"></div>
         </div>
           
         <div id="login-button-div">
           <button type="submit" id="login-button">Create Account</button>
           <div class="register-link">
-            <p>Already have a spaceship? <a href="/pages/login.html">Login</a></p>
+            <p>Already have an account? <a href="/pages/login.html">Login</a></p>
           </div>
         </div>
       </form>

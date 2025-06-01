@@ -4,48 +4,62 @@
     <title>Galaxy Contacts</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="../css/styles.css" rel="stylesheet">
+    <script type="module" src="../js/script.js"></script>
+    <script type="module" src="../js/contacts.js"></script>
   </head>
 
   <body id="contacts-body">
 
-    <header>
+    <div class="container">
+      <div class="content" id="contacts-header">
       <div>
-        <h1 class="logo">Logo</h1>
+        <img id="planetLogo" src="/images/PlanetLogo.png">
       </div>
 
       <div>
         <h1 class="logo" id="displayName"></h1>
       </div>
       
-      <a href="#"><button>About Us</button></a>
-    </header>
+      <a href="#"><button onclick="logOut()">Log out</button></a>
+    </div></div>
+
+    <div class="popup" id="create-contact-popup-container">
+        <form id="create-contact-form" class="content input-box">
+          <h3>Create a new contact</h3>
+          <input id="contactTextFirst" type="text" placeholder="First Name" required>
+          <input id="contactTextLast" type="text" placeholder="Last Name" required>
+          <input id="contactTextEmail" type="email" placeholder="Email" required>
+          <input id="contactTextNumber" type="tel" placeholder="Phone Number" required>
+          <div id="addResult"></div>
+          <button type="submit" class="add-ctct-btn" id="add-contact">Add Contact</button>
+          <button id="add-btn-close" type="button" class="add-btn-close" onclick="closeCreateContactPopup()">Cancel</button>
+        </form>
+    </div>
+
+    <div class="popup" id="edit-contact-popup-container">
+      <form id="edit-contact-form" class="content input-box">
+        <h3>Edit contact</h3>
+        <input id="edit-contact-firstname" type="text" placeholder="First Name" required>
+        <input id="edit-contact-lastname" type="text" placeholder="Last Name" required>
+        <input id="edit-contact-email" type="email" placeholder="Email" required>
+        <input id="edit-contact-phone" type="tel" placeholder="Phone Number" required>
+        <button type="submit" class="add-ctct-btn" id="edit-contact">Update</button>
+        <button id="add-btn-close" type="button" class="add-btn-close" onclick="closeEditContactPopup()">Cancel</button>
+      </form>
+  </div>
 
     <div class="container">
       <div class="content">
-        <h2>Contact List</h2>
+        <h2>Your contacts</h2>
         
         <div class="search-div">
-          <form action="">
-            <input type="text" placeholder="Search Contact">
+          <form action="" id="search-form">
+            <input type="text" placeholder="Search..." id="search-bar">
             <button type="submit" id="search-button"><i class='bx-sm bx bx-search'></i></button>
           </form>
           <div class ="buttons-div">
-            <button class="add-btn"><i class='bx-md bx bx-filter'></i></button>
-            <button type="button" id="add-btn" class="add-btn" onclick="openAddUserPopup()"><i class='bx-md bx bxs-user-plus'></i></button>
+            <button type="button" id="add-btn" class="add-btn" onclick="openCreateContactPopup()"><i class='bx-md bx bxs-user-plus'></i></button>
           </div>
-        </div>
-
-        <div id="add-popup">
-          <form id="popup" class="content input-box">
-            <h3>Contact Info</h3>
-            <input id="contactTextFirst" type="text" placeholder="First Name" required>
-            <input id="contactTextLast" type="text" placeholder="Last Name" required>
-            <input id="contactTextEmail" type="email" placeholder="Email" required>
-            <input id="contactTextNumber" type="tel" placeholder="Phone Number" required>
-            <div id="addResult"></div>
-            <button type="submit" class="add-ctct-btn" id="add-contact">Add Contact</button>
-            <button id="add-btn-close" type="button" class="add-btn-close" onclick="closeAddUserPopup()">Close</button>
-          </form>
         </div>
 
         <ul class = contact-list id="contact-list">
@@ -53,10 +67,5 @@
         
       </div>
     </div>
-
-    <div class="tmp">
-      <a href="/index.html" ><button>Temporary Return Button</button></a>
-    </div>
-    <script type="module" src="../js/script.js"></script>
   </body>
 </html>

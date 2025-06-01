@@ -5,9 +5,9 @@ let path = window.location.pathname;
 if (path.endsWith('contacts.html')) {
     let user = utils.readCookie();
 
-    utils.loadContacts(user.id);
+    utils.loadContacts(user.id, "");
 
-    document.getElementById("popup").addEventListener("submit", (e) => {
+    document.getElementById("create-contact-form").addEventListener("submit", (e) => {
         e.preventDefault(); // Prevent page reload 
         utils.addContact();
     });       
@@ -29,18 +29,6 @@ else if (path.endsWith('register.html')) {
     });
 }
 
-function openAddUserPopup() {
-    const popup = document.getElementById('add-popup');
-    popup.classList.add('open');
-}
-window.openAddUserPopup = openAddUserPopup;
-
-function closeAddUserPopup() {
-    const popup = document.getElementById('add-popup');
-    popup.classList.remove('open');
-}
-window.closeAddUserPopup = closeAddUserPopup;
-
 function doNothing(){return;}
 window.doNothing = doNothing;
 
@@ -51,4 +39,9 @@ function deleteContact(userID, contactID) {
         doNothing();
     }
 }
-window.deleteContact = deleteContact
+window.deleteContact = deleteContact;
+
+function logOut() {
+    utils.doLogout();
+}
+window.logOut = logOut;
