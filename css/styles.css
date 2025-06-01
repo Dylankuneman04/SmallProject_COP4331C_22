@@ -525,6 +525,7 @@ nav {
   display: none;
 }
 
-#create-contact-popup-container, #edit-contact-popup-container {
+#create-contact-popup-container, #edit-contact-popup-container,
+ #create-contact-form, #edit-contact-form {
   height: 100%;
 }

@@ -303,13 +303,13 @@ function readCookie() {
     }
 
     // if userId is not in the cookies since it expired: GET OUT! back to start screen
-    //if (userId < 0) {
-    //    window.location.href = "index.html";
-    //}
+    if (userId < 0) {
+       window.location.href = "/index.html";
+    }
 
-   //else {
+   else {
         document.getElementById("displayName").innerHTML = "Welcome, " + firstName + " " + lastName + "!";
-   // }
+    }
 
     let temp = {
         id: userId,
@@ -326,8 +326,11 @@ function doLogout() {
     firstName = "";
     lastName = "";
 
-    document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-    window.location.href = "index.html";
+    document.cookie = "firstName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "lastName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+    window.location.href = "/index.html";
 }
 
 
@@ -392,7 +395,7 @@ function addContactCard(person, userID) {
         <p>Email: ${person.EmailAddress}</p>
         <p>Phone: ${person.PhoneNumber}</p>
         <div class="contact-actions">
-            <button class="edit-btn" onclick="editContact(${userID}, ${person})">Edit</button>
+            <button class="edit-btn" onclick="editContact(${person.FirstName}, ${person.LastName}, ${person.EmailAddress}, ${person.PhoneNumber}, ${person.ContactID})">Edit</button>
             <button class="delete-btn" onclick="deleteContact(${userID}, ${person.ContactID})">Delete</button>
         </div>
     `;
@@ -462,9 +465,15 @@ function edit_row(id) {
     phone.innerHTML = "<input type='text' id='phone_text" + id + "' value='" + phone_data + "'>"
 }
 
-function doEditContact(payload) {
-    payload.UserID = readCookie().id;
-    let jsonPayload = JSON.stringify(payload);
+function doEditContact(contactFirstname, contactLastname, contactEmail, contactPhone, contactId) {
+    let jsonPayload = JSON.stringify({
+        UserID: readCookie().id,
+        FirstName: contactFirstname,
+        LastName: contactLastname,
+        EmailAddress: contactEmail,
+        PhoneNumber: contactPhone,
+        ContactID: contactId
+    });
 
     let url = urlBase + '/contacts/edit.' + extension;
 
@@ -484,13 +493,11 @@ function doEditContact(payload) {
 }
 
 // deletes contact from the DataBase
-function deleteFromDB(userID, contactID) {
-    let tmp = {
+function deleteContact(userID, contactID) {
+    let jsonPayload = JSON.stringify({
         UserID: userID,
         ContactID: contactID
-    };
-
-    let jsonPayload = JSON.stringify(tmp);
+    });
 
     let url = urlBase + '/contacts/delete.' + extension;
 
@@ -501,7 +508,7 @@ function deleteFromDB(userID, contactID) {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 console.log("Contact has been deleted");
-                loadContacts(userID);
+                loadContacts(readCookie().id, "");
             }
         };
         xhr.send(jsonPayload);
@@ -609,7 +616,7 @@ export default{
     loadContacts,
     edit_row,
     doEditContact,
-    deleteFromDB,
+    deleteContact,
     validAddContact,
     clickLogin,
     clickRegister

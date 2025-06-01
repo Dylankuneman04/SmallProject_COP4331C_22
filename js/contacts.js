@@ -3,6 +3,7 @@ import utils from './frontendCode.js';
 const searchBar = document.getElementById("search-bar");
 const searchForm = document.getElementById("search-form");
 const createContactPopup = document.getElementById("create-contact-popup-container");
+const createContactForm = document.getElementById("create-contact-form");
 const editContactPopup = document.getElementById("edit-contact-popup-container");
 
 const editContactForm = document.getElementById("edit-contact-form");
@@ -51,3 +52,14 @@ editContactForm.addEventListener("submit", function(e) {
     });
     closeEditContactPopup();
 });
+
+utils.loadContacts(utils.readCookie().id, "");
+
+createContactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    utils.addContact();
+});       
+
+window.logOut = function() {
+    utils.doLogout();
+}

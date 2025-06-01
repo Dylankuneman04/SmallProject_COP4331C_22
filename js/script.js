@@ -3,16 +3,7 @@ import utils from './frontendCode.js';
 let path = window.location.pathname;
 
 if (path.endsWith('contacts.html')) {
-    let user = utils.readCookie();
-
-    utils.loadContacts(user.id, "");
-
-    document.getElementById("create-contact-form").addEventListener("submit", (e) => {
-        e.preventDefault(); // Prevent page reload 
-        utils.addContact();
-    });       
-
-    // make a function to display contacts on server based on user.id
+    // moved to contacts.js
 }
 
 else if (path.endsWith('login.html')) {
@@ -34,14 +25,11 @@ window.doNothing = doNothing;
 
 function deleteContact(userID, contactID) {
     if (confirm("Are you sure you want to delete this contact?")) {
-        utils.deleteFromDB(userID, contactID);
-    } else {
-        doNothing();
+        utils.deleteContact(userID, contactID);
     }
 }
 window.deleteContact = deleteContact;
 
-function logOut() {
-    utils.doLogout();
+window.editContact = function(contactFirstname, contactLastname, contactEmail, contactPhone, contactId) {
+    utils.doEditContact(contactFirstname, contactLastname, contactEmail, contactPhone, contactId);
 }
-window.logOut = logOut;
