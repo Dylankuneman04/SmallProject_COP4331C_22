@@ -395,7 +395,7 @@ function addContactCard(person, userID) {
         <p>Email: ${person.EmailAddress}</p>
         <p>Phone: ${person.PhoneNumber}</p>
         <div class="contact-actions">
-            <button class="edit-btn" onclick="editContact(`${person.FirstName}`, `${person.LastName}`, `${person.EmailAddress}`, `${person.PhoneNumber}`, ${person.ContactID})">Edit</button>
+            <button class="edit-btn" onclick="openEditContactPopup('${person.FirstName}', '${person.LastName}', '${person.EmailAddress}', '${person.PhoneNumber}', ${person.ContactID})">Edit</button>
             <button class="delete-btn" onclick="deleteContact(${userID}, ${person.ContactID})">Delete</button>
         </div>
     `;
@@ -465,15 +465,9 @@ function edit_row(id) {
     phone.innerHTML = "<input type='text' id='phone_text" + id + "' value='" + phone_data + "'>"
 }
 
-function doEditContact(contactFirstname, contactLastname, contactEmail, contactPhone, contactId) {
-    let jsonPayload = JSON.stringify({
-        UserID: readCookie().id,
-        FirstName: contactFirstname,
-        LastName: contactLastname,
-        EmailAddress: contactEmail,
-        PhoneNumber: contactPhone,
-        ContactID: contactId
-    });
+function doEditContact(payload) {
+    payload.UserID = readCookie().id;
+    let jsonPayload = JSON.stringify(payload);
 
     let url = urlBase + '/contacts/edit.' + extension;
 

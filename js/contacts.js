@@ -28,13 +28,13 @@ window.closeCreateContactPopup = function() {
     createContactPopup.style.display = "none";
 }
 
-window.openEditContactPopup = function(contact) {
+window.openEditContactPopup = function(firstName, lastName, email, phone, contactId) {
     editContactPopup.style.display = "block";
-    editContactFirstName.value = contact.FirstName;
-    editContactLastName.value = contact.LastName;
-    editContactEmailAddress.value = contact.EmailAddress;
-    editContactPhoneNumber.value = contact.PhoneNumber;
-    editContactForm.dataset.CurrentContactID = contact.ContactID;
+    editContactFirstName.value = firstName;
+    editContactLastName.value = lastName;
+    editContactEmailAddress.value = email;
+    editContactPhoneNumber.value = phone;
+    editContactForm.dataset.CurrentContactID = contactId;
 }
 
 window.closeEditContactPopup = function() {
@@ -48,7 +48,7 @@ editContactForm.addEventListener("submit", function(e) {
         LastName: editContactLastName.value,
         EmailAddress: editContactEmailAddress.value,
         PhoneNumber: editContactPhoneNumber.value,
-        ContactID: editContactForm.dataset.CurrentContactID
+        ContactID: Number(editContactForm.dataset.CurrentContactID)
     });
     editContactForm.reset();
     closeEditContactPopup();

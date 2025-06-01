@@ -29,7 +29,3 @@ function deleteContact(userID, contactID) {
     }
 }
 window.deleteContact = deleteContact;
-
-window.editContact = function(contactFirstname, contactLastname, contactEmail, contactPhone, contactId) {
-    utils.doEditContact(contactFirstname, contactLastname, contactEmail, contactPhone, contactId);
-}
