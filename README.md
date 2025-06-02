@@ -1,4 +1,4 @@
-# Galatic Contacts
+# Galactic Contacts
 
 A simple web application contact manager.
 
