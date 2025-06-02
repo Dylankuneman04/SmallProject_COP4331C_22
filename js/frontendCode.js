@@ -45,27 +45,30 @@ function doLogin(){
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
         xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState != 4) {
+                return;
+            }
+            
+            if (this.status == 200) {
 
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.UserID;
-
-                if (userId < 1) {
-                    document.getElementById("loginErrorMessage").innerHTML = "Invalid username or password";
-                    return;
-                }
                 firstName = jsonObject.FirstName;
                 lastName = jsonObject.LastName;
 
                 saveCookie();
                 window.location.href = "contacts.html";
             }
+
+            if (this.status == 401) {
+                document.getElementById("loginErrorMessage").innerHTML = "Incorrect username or password";
+            }
         };
 
         // sends name and password json
         xhr.send(jsonPayload);
     } catch (err) {
-        document.getElementById("statusMessage").innerHTML = err.message;
+        document.getElementById("loginErrorMessage").innerHTML = err.message;
     }
 }
 
