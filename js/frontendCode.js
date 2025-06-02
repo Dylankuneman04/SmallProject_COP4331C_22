@@ -385,8 +385,8 @@ function addContactCard(person, userID) {
     div.className = 'contact-card';
     div.innerHTML = `
         <h3>${person.FirstName} ${person.LastName}</h3>
-        <p>Email: ${person.EmailAddress}</p>
-        <p>Phone: ${person.PhoneNumber}</p>
+        <p>Email:  ${person.EmailAddress}</p>
+        <p>Phone:  ${person.PhoneNumber}</p>
         <div class="contact-actions">
             <button class="edit-btn" onclick="openEditContactPopup('${person.FirstName}', '${person.LastName}', '${person.EmailAddress}', '${person.PhoneNumber}', ${person.ContactID})">Edit</button>
             <button class="delete-btn" onclick="deleteContact(${userID}, ${person.ContactID})">Delete</button>
