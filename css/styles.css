@@ -13,11 +13,11 @@ html, body {
 }
 
 a, button, [role="button"], input[type="button"], input[type="submit"], .clickable {
- cursor: url('/images/cursor(3).cur'), pointer !important;
+ cursor: url('/images/SpaceCursor.cur'), pointer !important;
 }
 
 body {
-  cursor: url('/images/cursor(3).cur'), auto;
+  cursor: url('/images/SpaceCursor.cur'), auto;
   
   margin: 0;
   padding: 0;

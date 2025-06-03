@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Galactic Contacts</title>
+    <meta name="description" content="Contacts management page for logged in users"/>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="../css/styles.css" rel="stylesheet">
     <script type="module" src="../js/script.js"></script>
@@ -13,7 +14,7 @@
     <div class="container header">
       <div class="content" id="contacts-header">
       <div>
-        <img id="planetLogo" src="/images/PlanetLogo.png">
+        <img id="planetLogo" src="/images/PlanetLogo.png" alt="Galactic contacts logo">
       </div>
 
       <div>
@@ -63,10 +64,10 @@
         <div class="search-div">
           <form action="" id="search-form">
             <input type="text" placeholder="Search..." id="search-bar">
-            <button type="submit" id="search-button"><i class='bx-sm bx bx-search'></i></button>
+            <button type="submit" id="search-button" aria-label="Search through contacts by name"><i class='bx-sm bx bx-search'></i></button>
           </form>
           <div class ="buttons-div">
-            <button type="button" id="add-btn" class="add-btn" onclick="openCreateContactPopup()"><i class='bx-md bx bxs-user-plus'></i></button>
+            <button type="button" id="add-btn" class="add-btn" onclick="openCreateContactPopup()" aria-label="Open a menu to create a new contact"><i class='bx-md bx bxs-user-plus'></i></button>
           </div>
         </div>
 
